@@ -42,7 +42,7 @@ if [[ $prj_type =~ ^[Yy]$ ]]; then
 	cp ${template_dir}/wordpress/samples/.gitignore-sample .gitignore
 
 	wp core config --dbname="${prj_id}" --dbprefix="${prj_initials}_" --dbuser="${LOCAL_DB_USER}" --dbpass="${LOCAL_DB_PASS}" --dbhost="${LOCAL_DB_HOST}"
-	sed -i '' -e "s/^define.'DB_.*$//g"  -e "s/^\/.*\/$//g" -e "/^$/d" wp-config.php
+	sed -i '' -e "s/^define.'DB_.*$//g" -e "s/^\/.*\/$//g" -e "/^$/d" wp-config.php
 
 	cp  ${template_dir}/wordpress/samples/config-sample.php local-config.php
 	sed -i '' -e "s|_database_|${prj_id}|" -e "s|_user_|${LOCAL_DB_USER}|" -e "s|_password_|${LOCAL_DB_PASS}|" -e "s|_dbhost_|${LOCAL_DB_HOST}|" -e "s|_home_|${prj_full_url}|" -e "s|_siteurl_|${prj_full_url}|" local-config.php
