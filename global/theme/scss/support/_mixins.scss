@@ -1,0 +1,760 @@
+//░░░░░░░░░░░░░░░░░░░░░░░░
+//
+//   MIXIN DIRECTORY
+//
+//	 _Text
+//	     ∟Highlight
+//	     ∟Placeholder
+//	     ∟Ellipsis
+//	     ∟Columns
+//
+//	 _Alignment
+//	     ∟Grid
+//	     ∟NavList
+//	     ∟AbsolutePosition
+//	     ∟VerticalAlign
+//	     ∟CenterByValue
+//	     ∟RelativeCenter
+//	     ∟AbsoluteCenter
+//	     ∟DirectCenter
+//
+//	 _Size
+//	     ∟AspectRatio
+//
+//	 _Cover
+//	     ∟Background
+//	     ∟Image
+//	     ∟Overlay
+//
+//	 _Transitions
+//       ∟Ease
+//       ∟Bounce
+//       ∟Elastic
+//
+//	 _Manipulate
+//	     ∟Transform
+//	     ∟Keyframes
+//	     ∟Animation
+//
+//   _Selectors
+//       ∟Children
+//
+//	 _Features
+//       ∟NavToggle
+//
+//	 _Photoshop
+//	     ∟Grayscale
+//	     ∟Multiply
+//	     ∟Gradient
+//	     ∟Blur
+//
+//	 _Shape
+//	     ∟Circle
+//	     ∟Triangle
+//
+//	 _CrossBrowser
+//	     ∟Prefixes
+//
+//░░░░░░░░░░░░░░░░░░░░░░░░
+
+
+//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+// _Text
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Highlight
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin selection($bgColor, $color){
+	::selection {
+		background-color: $bgColor;
+		color: $color;
+	}
+
+	::-moz-selection {
+		background-color: $bgColor;
+		color: $color;
+	}
+}
+
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Placeholder
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin placeholder($color, $font:undefined){
+	&::-webkit-input-placeholder { /* WebKit browsers */
+	    color: $color;
+	    @if( $font != undefined ){
+			@extend %#{$font};
+		}
+	}
+
+	&:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	    color: $color;
+	    opacity:  1;
+		@if( $font != undefined ){
+			@extend %#{$font};
+		}
+	}
+
+	&::-moz-placeholder { /* Mozilla Firefox 19+ */
+	    color: $color;
+	    opacity:  1;
+		@if( $font != undefined ){
+			@extend %#{$font};
+		}
+	}
+
+	&:-ms-input-placeholder { /* Internet Explorer 10+ */
+	    color: $color;
+		@if( $font != undefined ){
+			@extend %#{$font};
+		}
+	}
+}
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Ellipsis
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin ellipsis($overflow: ellipsis){
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: $overflow;
+}
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Columns
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin column-layout($colCount, $colGap){
+	column-count: $colCount;
+	-moz-column-count: $colCount;
+	-webkit-column-count: $colCount;
+	column-gap: ($colGap)em;
+	-moz-column-gap: ($colGap)em;
+	-webkit-column-gap: ($colGap)em;
+}
+
+
+
+//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+// _Alignment
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Grid
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+// ════ⓤⓢⓔ════
+// @include GridMe(4, 0, 0, (break:#, break:#));
+
+@function calc-width($col,$gut){
+	$perc: (100% / $col);
+
+	@if( $gut == 0 ){
+		@return $perc;
+	}
+	@else{
+		$gutter: (($gut * ($col - 1)) / $col);
+		@return calc(#{$perc} - #{$gutter});
+	}
+}
+
+@mixin GridMe($columns, $gutter-x, $gutter-y, $breakpoints:undefined){
+	width: calc-width($columns,$gutter-x);
+	margin-right: $gutter-x;
+	margin-top: $gutter-y;
+	float:left;
+	-webkit-transition: all 0.35s ease-in-out;
+	-moz-transition: all 0.35s ease-in-out;
+	-o-transition: all 0.35s ease-in-out;
+	transition: all 0.35s ease-in-out;
+
+	&:nth-child(#{$columns}n){
+		margin-right:0;
+	}
+
+	&:nth-child(#{$columns}n+1){
+		clear:both;
+	}
+
+	&:nth-child(-n+#{$columns}){
+		margin-top:0;
+	}
+
+
+	@if( $breakpoints != undefined ){
+		$breaks: $breakpoints;
+
+		@each $breakpoint, $columns in $breaks{
+			@media (max-width:#{$breakpoint}px){
+				width: calc-width($columns,$gutter-x);
+
+				&:nth-child(n){
+					margin-right:$gutter-x;
+					margin-top:$gutter-y;
+					clear:none;
+				}
+
+				&:nth-child(#{$columns}n){
+					margin-right:0;
+				}
+
+		        &:nth-child(#{$columns}n+1){
+					clear:both;
+		        }
+
+				&:nth-child(-n+#{$columns}){
+					margin-top:0;
+				}
+			}
+		}
+	}
+}
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟NavList
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin navList($margin:null){
+	list-style:none;
+
+	li{
+		display:inline-block;
+
+		@if $margin != null{
+			&:not(:last-child){
+				margin-right:$margin * 1px;
+			}
+		}
+	}
+}
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟AbsolutePosition
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin absolute($directions){
+	position:absolute;
+	@each $direction, $value in $directions{
+		#{$direction}:$value;
+	}
+}
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟VerticalAlign
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin vAlign($child){
+	&:before {
+		content: '';
+		display: inline-block;
+		vertical-align: middle;
+		height: 100%; width: .1px;
+	}
+	> #{$child}{
+		display:inline-block;
+		vertical-align:middle;
+	}
+}
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟CenterByValue
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin centerBy($type, $value){
+	position:absolute;
+
+	@if $type == height{
+		height: $value * 1px;
+		top: 50%;
+		margin-top: -1px * ($value/2);
+	}
+	@elseif $type == width{
+		width: $value * 1px;
+		left: 50%;
+		margin-left: -1px * ($value/2);
+	}
+}
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟RelativeCenter
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin centerRel($parentHeight, $objectHeight){
+	top: ($parentHeight - $objectHeight)/2;
+	position: relative;
+}
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟AbsoluteCenter
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin center($top:50%,$sides:undefined){
+	transform:translateY(-50%);
+	-webkit-transform:translateY(-50%);
+	-moz-transform:translateY(-50%);
+	-o-transform:translateY(-50%);
+	-ms-transform:translateY(-50%);
+	position:absolute;
+	top:$top;
+
+	@if( $sides != undefined ){
+		$thesides: $sides;
+
+		@each $side, $value in $thesides{
+			#{$side}:$value;
+		}
+	}
+}
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟DirectCenter
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin THEcenter($height, $width){
+	position: absolute;
+	height: $height * 1px;
+	top: 50%;
+	margin-top: -1px * ($height/2);
+	width: $width * 1px;
+	left: 50%;
+	margin-left: -1px * ($width/2);
+}
+
+
+
+//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+// _Size
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟AspectRatio
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin aspect-ratio($rel-height,$rel-width,$el-width:100){
+	width:$el-width * 1%;
+	height:0;
+	padding-top:($rel-height / $rel-width) * ($el-width * 1%);
+}
+
+
+
+//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+// _Cover
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Background
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin coverimg($xPo: 50%, $yPo: 50%){
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  background-position: $xPo $yPo;
+  background-repeat: no-repeat;
+}
+
+@mixin containimg($xPo: 50%, $yPo: 50%){
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  background-size: contain;
+  background-position: $xPo $yPo;
+  background-repeat: no-repeat;
+}
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Image
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+// ════ⓤⓢⓔ════
+// @include bgimg('icons/arrow.png')
+
+$image-path:"../images/";
+$asset-path:"../assets/";
+
+@mixin bgimg($path, $asset:null){
+	@if $asset == asset{
+		background-image:url(#{$asset-path}#{$path});
+		background-repeat:no-repeat;
+	}
+	@else{
+		background-image:url(#{$image-path}#{$path});
+		background-repeat:no-repeat;
+	}
+}
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Overlay
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin overlay($height:100%, $width:100%){
+	position:absolute;
+	left:0;
+	top:0;
+	height:$height;
+	width:$width;
+}
+
+
+
+//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+// _Transitions
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Ease
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin ease($property: all, $duration: 0.35s){
+  -webkit-transition: $property $duration ease-in-out;
+  -moz-transition: $property $duration ease-in-out;
+  -o-transition: $property $duration ease-in-out;
+  transition: $property $duration ease-in-out;
+}
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Bounce
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin bounce($property:all, $duration: 0.35s){
+	-webkit-transition: $property $duration cubic-bezier(0.155, 0.485, 0.325, 1);
+	-webkit-transition: $property $duration cubic-bezier(0.155, 0.485, 0.325, 1.265);
+	-moz-transition: $property $duration cubic-bezier(0.155, 0.485, 0.325, 1.265);
+	-o-transition: $property $duration cubic-bezier(0.155, 0.485, 0.325, 1.265);
+	transition: $property $duration cubic-bezier(0.155, 0.485, 0.325, 1.265);
+	-webkit-transition-timing-function: cubic-bezier(0.155, 0.485, 0.325, 1);
+	-webkit-transition-timing-function: cubic-bezier(0.155, 0.485, 0.325, 1.265);
+	-moz-transition-timing-function: cubic-bezier(0.155, 0.485, 0.325, 1.265);
+	-o-transition-timing-function: cubic-bezier(0.155, 0.485, 0.325, 1.265);
+	transition-timing-function: cubic-bezier(0.155, 0.485, 0.325, 1.265);
+}
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Elastic
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin elastic($property:all, $duration: 0.35s){
+	-webkit-transition: $property $duration cubic-bezier(0.630, 0, 0.550, 1);
+    -webkit-transition: $property $duration cubic-bezier(0.630, -0.600, 0.550, 1.405);
+    -moz-transition: $property $duration cubic-bezier(0.630, -0.600, 0.550, 1.405);
+    -o-transition: $property $duration cubic-bezier(0.630, -0.600, 0.550, 1.405);
+    transition: $property $duration cubic-bezier(0.630, -0.600, 0.550, 1.405);
+    -webkit-transition-timing-function: cubic-bezier(0.630, 0, 0.550, 1);
+    -webkit-transition-timing-function: cubic-bezier(0.630, -0.600, 0.550, 1.405);
+    -moz-transition-timing-function: cubic-bezier(0.630, -0.600, 0.550, 1.405);
+    -o-transition-timing-function: cubic-bezier(0.630, -0.600, 0.550, 1.405);
+    transition-timing-function: cubic-bezier(0.630, -0.600, 0.550, 1.405);
+}
+
+
+
+//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+// _Manipulate
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Transform
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin transform($value){
+	transform:$value;
+	-webkit-transform:$value;
+	-moz-transform:$value;
+	-o-transform:$value;
+	-ms-transform:$value;
+}
+
+@mixin origin($x:50%, $y:50%){
+	transform-origin:$x $y;
+	-webkit-transform-origin:$x $y;
+	-moz-transform-origin:$x $y;
+	-o-transform-origin:$x $y;
+	-ms-transform-origin:$x $y;
+}
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Keyframes
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin keyframes($animationName) {
+	@-webkit-keyframes #{$animationName} {
+		@content;
+	}
+	@-moz-keyframes #{$animationName} {
+		@content;
+	}
+	@-ms-keyframes #{$animationName} {
+		@content;
+	}
+	@-o-keyframes #{$animationName} {
+		@content;
+	}
+	@keyframes #{$animationName} {
+		@content;
+	}
+}
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Animation
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin animation($str) {
+	-webkit-animation: #{$str};
+	-moz-animation: #{$str};
+	-ms-animation: #{$str};
+	-o-animation: #{$str};
+	animation: #{$str};
+}
+
+
+
+//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+// _Selectors
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Children
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin child($children){
+	@each $child,$type in $children{
+		$typeof:type-of($child);
+		$split:('even', 'odd');
+
+		@if $typeof == string and not index($split, $child ) {
+			&:#{$child}-child{
+				@content;
+			}
+		}
+		@else{
+			&:nth-child(#{$child}#{$type}){
+				@content;
+			}
+		}
+	}
+}
+
+
+
+//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+// _Features
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟NavToggle
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin toggle($height,$width,$thickness,$color,$speed:0.35s){
+	height:$height;
+	width:$width;
+	position:relative;
+	cursor:pointer;
+
+	> *{
+		background-color:$color;
+		position:absolute;
+		height:$thickness;
+		width:100%;
+
+		&:first-child{
+			top:0;
+		}
+		&:nth-child(2){
+			@include center;
+		}
+		&:last-child{
+			bottom:0;
+		}
+	}
+}
+
+
+
+//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+// _Photoshop
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Grayscale
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin grayscale{
+	-moz-filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+	-o-filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+	-webkit-filter: grayscale(100%);
+	filter: gray;
+	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+}
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Multiply
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin multiply($color, $opacity){
+	background-blend-mode: multiply;
+	background-color: rgba($color, $opacity);
+}
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Gradient
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin gradient($startColor, $endColor, $axis:x, $startPercent:0%, $endPercent:100%){
+	@if $axis == y{
+		background: $startColor; /* Old browsers */
+		background: -moz-linear-gradient(top,  $startColor $startPercent, $endColor $endPercent); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop($startPercent,$startColor), color-stop($endPercent,$endColor)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top,  $startColor $startPercent,$endColor $endPercent); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top,  $startColor $startPercent,$endColor $endPercent); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top,  $startColor $startPercent,$endColor $endPercent); /* IE10+ */
+		background: linear-gradient(to bottom,  $startColor $startPercent,$endColor $endPercent); /* W3C */
+	}
+	@else if $axis == x{
+		background: $startColor; /* Old browsers */
+		background: -moz-linear-gradient(left,  $startColor $startPercent, $endColor $endPercent); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, right top, color-stop($startPercent,$startColor), color-stop($endPercent,$endColor)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(left,  $startColor $startPercent,$endColor $endPercent); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(left,  $startColor $startPercent,$endColor $endPercent); /* Opera 11.10+ */
+		background: -ms-linear-gradient(left,  $startColor $startPercent,$endColor $endPercent); /* IE10+ */
+		background: linear-gradient(to right,  $startColor $startPercent,$endColor $endPercent); /* W3C */
+	}
+}
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Blur
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin blur($amount){
+	filter:blur(#{$amount}px);
+	-webkit-filter:blur(#{$amount}px);
+	-moz-filter:blur(#{$amount}px);
+	-o-filter:blur(#{$amount}px);
+	-ms-filter:blur(#{$amount}px);
+}
+
+
+
+//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+// _Shapes
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Circle
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin circle($size){
+	height:#{$size}px;
+	width:#{$size}px;
+	border-radius:50%;
+}
+
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Triangle
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin triangle ($size, $color, $direction) {
+  height: 0;
+  width: 0;
+
+  $width: nth($size, 1);
+  $height: nth($size, length($size));
+
+  $foreground-color: nth($color, 1);
+  $background-color: if(length($color) == 2, nth($color, 2), transparent);
+
+  @if ($direction == up) or ($direction == down) or ($direction == right) or ($direction == left) {
+
+    $width: $width / 2;
+    $height: if(length($size) > 1, $height, $height/2);
+
+    @if $direction == up {
+      border-bottom: $height solid $foreground-color;
+      border-left: $width solid $background-color;
+      border-right: $width solid $background-color;
+
+    } @else if $direction == right {
+      border-bottom: $width solid $background-color;
+      border-left: $height solid $foreground-color;
+      border-top: $width solid $background-color;
+
+    } @else if $direction == down {
+      border-left: $width solid $background-color;
+      border-right: $width solid $background-color;
+      border-top: $height solid $foreground-color;
+
+    } @else if $direction == left {
+      border-bottom: $width solid $background-color;
+      border-right: $height solid $foreground-color;
+      border-top: $width solid $background-color;
+    }
+  }
+
+  @else if ($direction == up-right) or ($direction == up-left) {
+    border-top: $height solid $foreground-color;
+
+    @if $direction == up-right {
+      border-left:  $width solid $background-color;
+
+    } @else if $direction == up-left {
+      border-right: $width solid $background-color;
+    }
+  }
+
+  @else if ($direction == down-right) or ($direction == down-left) {
+    border-bottom: $height solid $foreground-color;
+
+    @if $direction == down-right {
+      border-left:  $width solid $background-color;
+
+    } @else if $direction == down-left {
+      border-right: $width solid $background-color;
+    }
+  }
+
+  @else if ($direction == inset-up) {
+    border-color: $background-color $background-color $foreground-color;
+    border-style: solid;
+    border-width: $height $width;
+  }
+
+  @else if ($direction == inset-down) {
+    border-color: $foreground-color $background-color $background-color;
+    border-style: solid;
+    border-width: $height $width;
+  }
+
+  @else if ($direction == inset-right) {
+    border-color: $background-color $background-color $background-color $foreground-color;
+    border-style: solid;
+    border-width: $width $height;
+  }
+
+  @else if ($direction == inset-left) {
+    border-color: $background-color $foreground-color $background-color $background-color;
+    border-style: solid;
+    border-width: $width $height;
+  }
+}
+
+
+
+//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+// _CrossBrowser
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Prefixes
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+
+@mixin prefix($property, $value){
+	@each $prefix in -webkit-, -ms-, -o-, -moz-, '' {
+		#{$prefix}#{$property}: $value;
+	}
+}

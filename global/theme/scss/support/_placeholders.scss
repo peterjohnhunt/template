@@ -1,0 +1,11 @@
+%last-margin{
+    &:last-child{
+		margin-bottom: 0;
+	}
+}
+
+%freeze{
+	overflow:hidden;
+	position:fixed;
+    width:100%;
+}

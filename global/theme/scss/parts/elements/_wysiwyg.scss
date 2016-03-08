@@ -1,0 +1,113 @@
+//░░░░░░░░░░░░░░░░░░░░░░░░
+//
+//	 DIRECTORY
+//
+//	 _Headings
+//	 _Paragraphs
+//	 _Links
+//   _List
+//   _Blockquote
+//   _ImgAlign
+//
+//░░░░░░░░░░░░░░░░░░░░░░░░
+
+.wysiwyg{
+
+//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+// _Headings
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+
+
+
+//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+// _Paragraphs
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+p{
+	margin-bottom:20px;
+
+	&:last-child{
+		margin-bottom:0;
+	}
+}
+
+
+//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+// _Links
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+	a{
+		font-family:inherit;
+		font-weight:inherit;
+		font-size:inherit;
+		text-decoration: none;
+		// color:$link;
+
+		&:hover{
+			// color:darken($link,5%);
+		}
+	}
+
+
+//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+// _List
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+ul,ol{
+	padding-left:30px;
+	margin-bottom:20px;
+
+	li{
+		// @extend %reg;
+		// font-size:em(16);
+		margin-bottom:5px;
+	}
+}
+
+
+//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+// _Blockquote
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+blockquote{
+	text-align:center;
+
+	p{
+		// @extend %bold;
+		line-height:em(18,16);
+		font-size:em(20);
+
+		&:before,&:after{
+			content:'"';
+			font-size:em(25);
+			// color:$gray;
+		}
+
+		&:before{
+			margin-right:5px;
+		}
+	}
+}
+
+
+//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+// _ImgAlign
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+	img{
+		&.alignleft{
+			float:left;
+		}
+		&.alignright{
+			float:right;
+		}
+		&.aligncenter{
+			display:block;
+			margin-left:auto;
+			margin-right:auto;
+		}
+	}
+
+
+}

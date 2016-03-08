@@ -1,0 +1,34 @@
+$breakpoints:(
+	container      : 1200px,
+	desktop        : 960px,
+	laptop         : 850px,
+	tablet         : 768px,
+	phablet        : 600px,
+	phone          : 500px,
+	iphone         : 320px
+);
+
+
+@mixin breakpoint($breakpoint){
+	@if map-has-key($breakpoints, $breakpoint){
+		@media (max-width: map-get($breakpoints, $breakpoint)){
+			@content;
+		}
+	}
+	@else{
+		@media (max-width:$breakpoint * 1px){
+			@content;
+		}
+	}
+}
+
+
+// ════ⓝⓞⓣⓔ════
+// Prevent Mobile Orientation from Adjusting Font Size
+
+@media only screen and (max-device-width: 480px) {
+	body {
+		-webkit-text-size-adjust: 100%;
+		-ms-text-size-adjust: 100%;
+	}
+}
