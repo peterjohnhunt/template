@@ -1,0 +1,10 @@
+.codekit-cache
+.DS_Store
+.htaccess
+.sass-cache/
+debug.log
+config.codekit
+local-config.php
+scss-cache/
+latestdb-*.sql
+upgrade/

@@ -1,0 +1,14 @@
+# Wordpress Credentials
+WP_USER=root
+WP_PASS=root
+WP_EMAIL='@llt-group.com'
+
+# Local DB Credentials
+LOCAL_DB_USER=root
+LOCAL_DB_PASS=root
+LOCAL_DB_HOST=localhost
+
+# Environment Settings
+WORK_DIR=~/Development/Sites/
+WORK_BASE_URL='http://localhost:8888'
+WORK_SUB_URL='%sitename%'
