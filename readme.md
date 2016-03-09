@@ -22,3 +22,9 @@ core config:
 alias install='cd PATH_TO_TEMPLATE_FOLDER/; git pull; clear; ./installer.sh;'
 ```
 ---
+### MAMP users
+
+add to PATH in .bash_profile
+```
+export PATH=/Applications/MAMP/Library/bin:$PATH
+```
