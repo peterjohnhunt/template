@@ -128,3 +128,12 @@ tell application "CodeKit"
     add project at path "$project_dir"
 end tell
 EOF
+
+if [[ $HOSTS ]] && [[ $VHOSTS ]]; then
+	echo "127.0.0.1   ${prj_full_url//http:\/\//}" | sudo tee -a $HOSTS
+	echo "<VirtualHost *:80>" | sudo tee -a $VHOSTS
+	echo "    DocumentRoot \"${project_dir}\"" | sudo tee -a $VHOSTS
+	echo "    ServerName ${prj_full_url//http:\/\//}" | sudo tee -a $VHOSTS
+	echo "</VirtualHost>" | sudo tee -a $VHOSTS
+	sudo apachectl restart
+fi

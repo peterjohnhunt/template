@@ -26,5 +26,6 @@ alias install='cd PATH_TO_TEMPLATE_FOLDER/; git pull; clear; ./installer.sh;'
 
 add to PATH in .bash_profile
 ```
+export PATH=/Applications/MAMP/bin/php/php5.6.10/bin:/Applications/MAMP/Library/bin:$PATH
 export PATH=/Applications/MAMP/Library/bin:$PATH
 ```

@@ -12,3 +12,7 @@ LOCAL_DB_HOST=localhost
 WORK_DIR=~/Sites/
 WORK_BASE_URL='http://localhost:8888'
 WORK_SUB_URL='/%sitename%'
+
+# Apache Config
+VHOSTS=false
+HOSTS=false
