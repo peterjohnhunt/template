@@ -358,12 +358,18 @@
 // ∟Overlay
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin overlay($height:100%, $width:100%){
+@mixin overlay($height:100%, $width:100%, $position:(top:0,left:0)){
 	position:absolute;
-	left:0;
-	top:0;
 	height:$height;
 	width:$width;
+
+	@if( $position != undefined ){
+		$theposition: $position;
+
+		@each $side, $value in $theposition{
+			#{$side}:$value;
+		}
+	}
 }
 
 
