@@ -4,7 +4,6 @@
 //
 //   _Primaries
 //   _Shades
-//   _Backgrounds
 //
 //░░░░░░░░░░░░░░░░░░░░░░░░
 
@@ -29,19 +28,3 @@ $white:#FFF;
 // 		shade:value
 // 	)
 // );
-
-
-
-//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-// _Backgrounds
-//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-
-$backgrounds:(
-	'white':$white
-);
-
-@each $background, $color in $backgrounds{
-	%bg-#{$background}{
-		background-color:$color;
-	}
-}
