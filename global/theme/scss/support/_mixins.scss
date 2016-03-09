@@ -7,6 +7,7 @@
 //	     ∟Placeholder
 //	     ∟Ellipsis
 //	     ∟Columns
+//       ∟EndMargin
 //
 //	 _Alignment
 //	     ∟Grid
@@ -136,6 +137,16 @@
 	column-gap: ($colGap)em;
 	-moz-column-gap: ($colGap)em;
 	-webkit-column-gap: ($colGap)em;
+}
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟EndMargin
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin end-margin($position:last,$direction:bottom){
+    &:#{$position}-child{
+		margin-#{$direction}: 0;
+	}
 }
 
 

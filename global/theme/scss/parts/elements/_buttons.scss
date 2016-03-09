@@ -21,7 +21,7 @@ $btn-keys:(
 // 		$btn-class: '.button';
 // 	}
 // 	@else{
-// 		$btn-class: '.button--#{$btn}';
+// 		$btn-class: '.button-#{$btn}';
 // 	}
 // 	#{$btn-class}{
 // 		@include btn_styles((
