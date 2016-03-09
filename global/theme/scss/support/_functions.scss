@@ -22,7 +22,7 @@
 // _Kerning
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
-@function space($kerning) {
+@function kern($kerning) {
 	@return ($kerning / 1000) * 1em;
 }
 
