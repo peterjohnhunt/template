@@ -102,7 +102,7 @@ if [[ $prj_type =~ ^[Yy]$ ]]; then
 	wp db export "db/latestdb-${now}.sql"
 	wp db export "db/latestdb.sql"
 
-	wp theme activate $prj_id-theme
+	wp theme activate ${prj_id}-theme
 
 elif [[ $prj_type =~ ^[Nn]$ ]]; then
 
