@@ -21,11 +21,13 @@
 //
 //	 _Size
 //	     ∟AspectRatio
-//
-//	 _Cover
-//	     ∟Background
-//	     ∟Image
 //	     ∟Overlay
+//
+//   _Background
+//	     ∟Color
+//	     ∟Cover
+//	     ∟Contain
+//	     ∟Image
 //
 //	 _Transitions
 //       ∟Ease
@@ -352,17 +354,37 @@
 	padding-top:($rel-height / $rel-width) * ($el-width * 1%);
 }
 
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Overlay
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin overlay($height:100%, $width:100%){
+	position:absolute;
+	left:0;
+	top:0;
+	height:$height;
+	width:$width;
+}
+
 
 
 //▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-// _Cover
+// _Background
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-// ∟Background
+// ∟Color
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin coverimg($xPo: 50%, $yPo: 50%){
+@mixin bg($color){
+	background-color:$color;
+}
+
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Cover
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin coverbg($xPo: 50%, $yPo: 50%){
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -370,7 +392,11 @@
   background-repeat: no-repeat;
 }
 
-@mixin containimg($xPo: 50%, $yPo: 50%){
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Contain
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin containbg($xPo: 50%, $yPo: 50%){
   -webkit-background-size: contain;
   -moz-background-size: contain;
   background-size: contain;
@@ -397,18 +423,6 @@ $asset-path:"../assets/";
 		background-image:url(#{$image-path}#{$path});
 		background-repeat:no-repeat;
 	}
-}
-
-//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-// ∟Overlay
-//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-
-@mixin overlay($height:100%, $width:100%){
-	position:absolute;
-	left:0;
-	top:0;
-	height:$height;
-	width:$width;
 }
 
 
