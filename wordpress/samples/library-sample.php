@@ -1,11 +1,4 @@
 <?php
-/*
-Plugin Name: Wordpress Functions Library
-Plugin URI: https://github.com/peterjohnhunt/wordpress-functions-library
-Version: 1.1.0
-Author: PeterJohn Hunt
-Description: Functions Library for Wordpress
-*/
 
 //░░░░░░░░░░░░░░░░░░░░░░░░
 //
