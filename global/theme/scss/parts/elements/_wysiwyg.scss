@@ -59,8 +59,6 @@ ul,ol{
 	margin-bottom:20px;
 
 	li{
-		// @extend %reg;
-		// font-size:em(16);
 		margin-bottom:5px;
 	}
 }
@@ -74,14 +72,12 @@ blockquote{
 	text-align:center;
 
 	p{
-		// @extend %bold;
 		line-height:em(18,16);
 		font-size:em(20);
 
 		&:before,&:after{
 			content:'"';
 			font-size:em(25);
-			// color:$gray;
 		}
 
 		&:before{

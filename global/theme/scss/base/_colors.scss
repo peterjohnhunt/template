@@ -14,7 +14,6 @@
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 $white:#FFF;
-// $link:$color;
 
 
 
@@ -38,14 +37,11 @@ $white:#FFF;
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 $backgrounds:(
-	white:$white
+	'white':$white
 );
 
 @each $background, $color in $backgrounds{
-	%bg_#{$background}{
-		background-color:$color;
-	}
-	.bg_#{$background}{
+	%bg-#{$background}{
 		background-color:$color;
 	}
 }
