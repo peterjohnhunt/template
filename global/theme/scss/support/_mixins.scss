@@ -329,7 +329,7 @@
 // ∟DirectCenter
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin THEcenter($height, $width){
+@mixin direct-center($height, $width){
 	position: absolute;
 	height: $height * 1px;
 	top: 50%;
@@ -693,7 +693,6 @@ $asset-path:"../assets/";
 	width:#{$size}px;
 	border-radius:50%;
 }
-
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 // ∟Triangle
