@@ -25,8 +25,7 @@
 //
 //   _Background
 //	     ∟Color
-//	     ∟Cover
-//	     ∟Contain
+//	     ∟Size
 //	     ∟Image
 //
 //	 _Transitions
@@ -388,25 +387,13 @@
 }
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-// ∟Cover
+// ∟Size
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin coverbg($xPo: 50%, $yPo: 50%){
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  background-position: $xPo $yPo;
-  background-repeat: no-repeat;
-}
-
-//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-// ∟Contain
-//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-
-@mixin containbg($xPo: 50%, $yPo: 50%){
-  -webkit-background-size: contain;
-  -moz-background-size: contain;
-  background-size: contain;
+@mixin bgsize($size:cover,$xPo: 50%, $yPo: 50%){
+  -webkit-background-size: $size;
+  -moz-background-size: $size;
+  background-size: $size;
   background-position: $xPo $yPo;
   background-repeat: no-repeat;
 }
