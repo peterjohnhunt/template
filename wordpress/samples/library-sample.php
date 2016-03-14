@@ -5,37 +5,27 @@
 //	 DIRECTORY
 //
 //	 _Debugging
-//	 	∟_log
+//	 	∟Log
 //	 _SVGs
-//	 	∟cc_mime_types
-//	 	∟get_svg
-//	 	∟the_svg
+//	 	∟CC_Mime_Types
+//	 	∟Get_SVG
 //	 _Strings
-//	 	∟get_accent_words
-//	 	∟the_accent_words
-//	 	∟get_phone
-//	 	∟the_phone
-//	 	∟get_currency
-//	 	∟the_currency
-//	 	∟get_parse_currency
-//	 	∟the_parse_currency
+//	 	∟Get_Accent_Words
+//	 	∟Get_Phone
+//	 	∟Get_Currency
+//	 	∟Get_Parse_Currency
 //	 _Path
-//	 	∟get_static
-//	 	∟the_static
-//	 _Iframe
-//	 	∟get_iframe_id
-//	 	∟the_iframe_id
+//	 	∟Get_Static
+//	 _iFrame
+//	 	∟Get_iFrame_Id
 //	 _Youtube
-//	 	∟get_video_thumbnail
-//	 	∟the_video_thumbnail
+//	 	∟Get_Video_Thumbnail
 //	 _Templates
-//	 	∟get_page_by_template
-//	 	∟the_page_by_template
-//	 	∟get_page_link_by_template
-//	 	∟the_page_link_by_template
+//	 	∟Get_Page_By_Template
+//	 	∟Get_Page_Link_By_Template
 //	 _Taxonomies
-//	 	∟get_page_by_template
-//	 	∟the_page_by_template
+//	 	∟Get_Term_Title
+//	 	∟Get_Ordered_Terms
 //
 //░░░░░░░░░░░░░░░░░░░░░░░░
 
@@ -43,12 +33,10 @@
 //  _Debugging
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
-/**
- * output any type of variable or value to the debug log
- *
- * @since version 1.0.0
- * @author PeterJohn Hunt <email@peterjohnhunt.com>
- */
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟Log
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('_log')){
 	function _log( $message ) {
 		if( WP_DEBUG === true ){
@@ -62,16 +50,15 @@ if(!function_exists('_log')){
 }
 
 
+
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 //  _SVGs
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
-/**
- * allow svg file types
- *
- * @since version 1.1.0
- * @author PeterJohn Hunt <email@peterjohnhunt.com>
- */
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟CC_Mime_Types
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('cc_mime_types')){
 	function cc_mime_types($mimes) {
 		$mimes['svg'] = 'image/svg+xml';
@@ -80,12 +67,10 @@ if(!function_exists('cc_mime_types')){
 	add_filter('upload_mimes', 'cc_mime_types');
 }
 
-/**
- * return svg file contents
- *
- * @since version 1.0.0
- * @author PeterJohn Hunt <email@peterjohnhunt.com>
- */
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟Get_SVG
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('get_svg')){
 	function get_svg($svg) {
 		if ( $svg && strpos($svg, '.svg')) {
@@ -95,12 +80,10 @@ if(!function_exists('get_svg')){
 	}
 }
 
-/**
- * echo svg file contents
- *
- * @since version 1.0.0
- * @author PeterJohn Hunt <email@peterjohnhunt.com>
- */
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟The_SVG
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('the_svg')){
 	function the_svg($svg) {
 		echo get_svg($svg);
@@ -108,18 +91,17 @@ if(!function_exists('the_svg')){
 }
 
 
+
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 //  _Strings
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
-/**
- * replace and return all quotes in string with specified html tags
- *
- * @since version 1.0.0
- * @author PeterJohn Hunt <email@peterjohnhunt.com>
- */
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟Get_Accent_Words
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('get_accent_words')){
-	function get_accent_words( $content, $tag="em" ) {
+	function get_accent_words( $content, $tag="span" ) {
 		if (preg_match_all('/\"|\'/', $content, $matches)) {
 			$opening = '<' .$tag. '>';
 			$closing = '</' .$tag. '>';
@@ -140,24 +122,20 @@ if(!function_exists('get_accent_words')){
 	}
 }
 
-/**
- * replace and echo all quotes in string with specified html tags
- *
- * @since version 1.0.0
- * @author PeterJohn Hunt <email@peterjohnhunt.com>
- */
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟The_Accent_Words
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('the_accent_words')){
-	function the_accent_words( $content, $tag="em" ) {
+	function the_accent_words( $content, $tag="span" ) {
 		echo get_accent_words( $content, $tag );
 	}
 }
 
-/**
- * return clean phone number text and prepare for link tag
- *
- * @since version 1.0.0
- * @author PeterJohn Hunt <email@peterjohnhunt.com>
- */
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟Get_Phone
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('get_phone')){
 	function get_phone($number, $prefix="+1") {
 		$url_phone = str_replace(array("+1", "+44", "+", "(", ")", "-", ".", " " ), "", $number);
@@ -166,24 +144,20 @@ if(!function_exists('get_phone')){
 	}
 }
 
-/**
- * echo clean phone number text and prepare for link tag
- *
- * @since version 1.0.0
- * @author PeterJohn Hunt <email@peterjohnhunt.com>
- */
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟The_Phone
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('the_phone')){
 	function the_phone($number, $prefix="+1") {
 		echo get_phone($number, $prefix);
 	}
 }
 
-/**
- * return number formatted as currency
- *
- * @since version 1.1.0
- * @author PeterJohn Hunt <email@peterjohnhunt.com>
- */
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟Get_Currency
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('get_currency')){
 	function get_currency($number, $trim_length=0) {
 		setlocale(LC_MONETARY, 'en_US');
@@ -192,24 +166,20 @@ if(!function_exists('get_currency')){
 	}
 }
 
-/**
-* echo number formatted as currency
-*
-* @since version 1.1.0
-* @author PeterJohn Hunt <email@peterjohnhunt.com>
-*/
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟The_Currency
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('the_currency')){
 	function the_currency($number, $trim_length=0) {
 		echo get_currency($number, $trim_length);
 	}
 }
 
-/**
-* return currency formatted as number
-*
-* @since version 1.1.0
-* @author PeterJohn Hunt <email@peterjohnhunt.com>
-*/
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟Get_Parse_Currency
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('get_parse_currency')){
 	function get_parse_currency($amount){
 		$amount = str_replace(array('$',','),'',$amount);
@@ -217,12 +187,10 @@ if(!function_exists('get_parse_currency')){
 	}
 }
 
-/**
-* echo currency formatted as number
-*
-* @since version 1.1.0
-* @author PeterJohn Hunt <email@peterjohnhunt.com>
-*/
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟The_Parse_Currency
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('the_currency')){
 	function the_parse_currency($number) {
 		echo get_parse_currency($number);
@@ -230,28 +198,25 @@ if(!function_exists('the_currency')){
 }
 
 
+
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 //  _Paths
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
-/**
- * return path to static files location
- *
- * @since version 1.0.0
- * @author PeterJohn Hunt <email@peterjohnhunt.com>
- */
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟Get_Static
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('get_static')){
 	function get_static($filename='') {
 		return get_template_directory_uri().'/'.$filename;
 	}
 }
 
-/**
- * echo path to static files location
- *
- * @since version 1.0.0
- * @author PeterJohn Hunt <email@peterjohnhunt.com>
- */
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟The_Static
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('the_static')){
 	function the_static($filename='') {
 		echo get_static($filename);
@@ -259,16 +224,15 @@ if(!function_exists('the_static')){
 }
 
 
+
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-//  _Iframe
+//  _iFrame
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
-/**
- * return stripped iframe src
- *
- * @since version 1.1.0
- * @author PeterJohn Hunt <email@peterjohnhunt.com>
- */
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟Get_iFrame_Id
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('get_iframe_id')){
 	function get_iframe_id( $iframe, $fieldName='video' ){
 
@@ -283,12 +247,10 @@ if(!function_exists('get_iframe_id')){
 	}
 }
 
-/**
- * echo stripped iframe src
- *
- * @since version 1.1.0
- * @author PeterJohn Hunt <email@peterjohnhunt.com>
- */
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟The_iFrame_Id
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('the_iframe_id')){
 	function the_iframe_id( $iframe ){
 		echo get_iframe_id( $iframe );
@@ -296,16 +258,15 @@ if(!function_exists('the_iframe_id')){
 }
 
 
+
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 //  _Youtube
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
-/**
- * return video youtube thumbnail url
- *
- * @since version 1.1.0
- * @author PeterJohn Hunt <email@peterjohnhunt.com>
- */
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟Get_Video_Thumbnail
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('get_video_thumbnail')){
 	function get_video_thumbnail( $video_post=false, $fieldName='video' ){
 		if (!$video_post) {
@@ -318,12 +279,10 @@ if(!function_exists('get_video_thumbnail')){
 	}
 }
 
-/**
- * echo video youtube thumbnail url
- *
- * @since version 1.1.0
- * @author PeterJohn Hunt <email@peterjohnhunt.com>
- */
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟The_Video_Thumbnail
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('the_video_thumbnail')){
 	function the_video_thumbnail( $video_post=false, $fieldName='video' ){
 		echo get_video_thumbnail($video_post, $fieldName);
@@ -331,16 +290,15 @@ if(!function_exists('the_video_thumbnail')){
 }
 
 
+
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 //  _Templates
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
-/**
- * return page id linked to template
- *
- * @since version 1.1.0
- * @author PeterJohn Hunt <email@peterjohnhunt.com>
- */
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟Get_Page_By_Template
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('get_page_by_template')){
 	function get_page_by_template($template){
 		$template .= '.php';
@@ -357,52 +315,46 @@ if(!function_exists('get_page_by_template')){
 	}
 }
 
-/**
- * echo page id linked to template
- *
- * @since version 1.1.0
- * @author PeterJohn Hunt <email@peterjohnhunt.com>
- */
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟The_Page_By_Template
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('the_page_by_template')){
 	function the_page_by_template($template){
 		echo get_page_by_template($template);
 	}
 }
 
-/**
- * return page url linked to template
- *
- * @since version 1.1.0
- * @author PeterJohn Hunt <email@peterjohnhunt.com>
- */
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟Get_Page_Link_By_Template
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('get_page_link_by_template')){
 	function get_page_link_by_template($template){
 		return get_the_permalink(get_page_by_template($template));
 	}
 }
 
-/**
- * echo page url linked to template
- *
- * @since version 1.1.0
- * @author PeterJohn Hunt <email@peterjohnhunt.com>
- */
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟the_page_link_by_template
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('the_page_link_by_template')){
 	function the_page_link_by_template($template){
 		echo get_page_link_by_template($template);
 	}
 }
 
+
+
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 //  _Taxonomies
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
-/**
- * return taxonomy term title
- *
- * @since version 1.1.0
- * @author PeterJohn Hunt <email@peterjohnhunt.com>
- */
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟Get_Term_Title
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('get_term_title')){
 	function get_term_title($term_id, $taxonomy){
 		if (!$term_id)
@@ -415,15 +367,35 @@ if(!function_exists('get_term_title')){
 	}
 }
 
-/**
- * echo taxonomy term title
- *
- * @since version 1.1.0
- * @author PeterJohn Hunt <email@peterjohnhunt.com>
- */
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟The_Term_Title
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
 if(!function_exists('the_term_title')){
 	function the_term_title($term_id, $taxonomy){
 		echo get_term_title($term_id, $taxonomy);
+	}
+}
+
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟Get_Ordered_Terms
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
+if(!function_exists('get_ordered_terms')){
+	function get_ordered_terms($taxonomy, $args=array()){
+	    $terms = get_terms($taxonomy, $args);
+
+	    $ordered_terms = array();
+
+	    $order_map = array_map(function($term){return get_field( 'order', $term->taxonomy.'_'.$term->term_id );}, $terms);
+
+	    asort($order_map);
+
+	    foreach ($order_map as $index => $order) {
+	        $ordered_terms[] = $terms[$index];
+	    }
+
+	    return $ordered_terms;
 	}
 }
 
