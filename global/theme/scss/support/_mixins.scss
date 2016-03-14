@@ -27,6 +27,7 @@
 //	     ∟Color
 //	     ∟Size
 //	     ∟Image
+//	     ∟Content
 //
 //	 _Transitions
 //       ∟Ease
@@ -419,6 +420,19 @@ $asset-path:"../assets/";
 	}
 }
 
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// ∟Content
+//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+@mixin bgcontent($content_class, $z:0){
+	z-index:$z;
+
+	#{$content_class}{
+		display:block;
+		z-index:-1;
+	}
+}
+
 
 
 //▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
@@ -440,17 +454,31 @@ $asset-path:"../assets/";
 // ∟Bounce
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin bounce($property:all, $duration: 0.35s){
-	-webkit-transition: $property $duration cubic-bezier(0.155, 0.485, 0.325, 1);
-	-webkit-transition: $property $duration cubic-bezier(0.155, 0.485, 0.325, 1.265);
-	-moz-transition: $property $duration cubic-bezier(0.155, 0.485, 0.325, 1.265);
-	-o-transition: $property $duration cubic-bezier(0.155, 0.485, 0.325, 1.265);
-	transition: $property $duration cubic-bezier(0.155, 0.485, 0.325, 1.265);
-	-webkit-transition-timing-function: cubic-bezier(0.155, 0.485, 0.325, 1);
-	-webkit-transition-timing-function: cubic-bezier(0.155, 0.485, 0.325, 1.265);
-	-moz-transition-timing-function: cubic-bezier(0.155, 0.485, 0.325, 1.265);
-	-o-transition-timing-function: cubic-bezier(0.155, 0.485, 0.325, 1.265);
-	transition-timing-function: cubic-bezier(0.155, 0.485, 0.325, 1.265);
+@mixin bounce($property:all, $duration: 0.35s, $strength:light){
+	@if( $strength == light ){
+		-webkit-transition: $property $duration cubic-bezier(0.155, 0.485, 0.325, 1);
+		-webkit-transition: $property $duration cubic-bezier(0.155, 0.485, 0.325, 1.265);
+		-moz-transition: $property $duration cubic-bezier(0.155, 0.485, 0.325, 1.265);
+		-o-transition: $property $duration cubic-bezier(0.155, 0.485, 0.325, 1.265);
+		transition: $property $duration cubic-bezier(0.155, 0.485, 0.325, 1.265);
+		-webkit-transition-timing-function: cubic-bezier(0.155, 0.485, 0.325, 1);
+		-webkit-transition-timing-function: cubic-bezier(0.155, 0.485, 0.325, 1.265);
+		-moz-transition-timing-function: cubic-bezier(0.155, 0.485, 0.325, 1.265);
+		-o-transition-timing-function: cubic-bezier(0.155, 0.485, 0.325, 1.265);
+		transition-timing-function: cubic-bezier(0.155, 0.485, 0.325, 1.265);
+	}
+	@else if( $strength == strong ){
+		-webkit-transition: $property $duration cubic-bezier(0.060, 0.980, 0.630, 1);
+		-webkit-transition: $property $duration cubic-bezier(0.060, 0.980, 0.630, 1.650);
+		-moz-transition: $property $duration cubic-bezier(0.060, 0.980, 0.630, 1.650);
+		-o-transition: $property $duration cubic-bezier(0.060, 0.980, 0.630, 1.650);
+		transition: $property $duration cubic-bezier(0.060, 0.980, 0.630, 1.650);
+		-webkit-transition-timing-function: cubic-bezier(0.060, 0.980, 0.630, 1);
+		-webkit-transition-timing-function: cubic-bezier(0.060, 0.980, 0.630, 1.650);
+		-moz-transition-timing-function: cubic-bezier(0.060, 0.980, 0.630, 1.650);
+		-o-transition-timing-function: cubic-bezier(0.060, 0.980, 0.630, 1.650);
+		transition-timing-function: cubic-bezier(0.060, 0.980, 0.630, 1.650);
+	}
 }
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
