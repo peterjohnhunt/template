@@ -29,8 +29,8 @@ if [ ! -d "$prj_id" ]; then
 fi
 cd $prj_id
 
-cp ${template_dir}/global/samples/config-sample.codekit config.codekit
-sed -i '' -e "s|%project_name%|${prj_name}|g" -e "s|%project_base_url%|${prj_base_url}|g" -e "s|%project_sub_url%|${prj_sub_url}|g" config.codekit
+sed -e "s|%project_name%|${prj_name}|g" -e "s|%project_base_url%|${prj_base_url}|g" -e "s|%project_sub_url%|${prj_sub_url}|g" ${template_dir}/global/samples/config-sample.codekit > config.codekit
+cp ${template_dir}/global/samples/.gitignore .
 
 git init
 
@@ -39,13 +39,11 @@ if [[ $prj_type =~ ^[Yy]$ ]]; then
 	wp_variables
 	wp core download
 
-	cp ${template_dir}/wordpress/samples/.gitignore-sample .gitignore
 
 	wp core config --dbname="${prj_id}" --dbprefix="${prj_initials}_" --dbuser="${LOCAL_DB_USER}" --dbpass="${LOCAL_DB_PASS}" --dbhost="${LOCAL_DB_HOST}"
 	sed -i '' -e "s/^define.'DB_.*$//g" -e "s/^\/.*\/$//g" -e "/^$/d" wp-config.php
 
-	cp  ${template_dir}/wordpress/samples/config-sample.php local-config.php
-	sed -i '' -e "s|_database_|${prj_id}|" -e "s|_user_|${LOCAL_DB_USER}|" -e "s|_password_|${LOCAL_DB_PASS}|" -e "s|_dbhost_|${LOCAL_DB_HOST}|" -e "s|_home_|${prj_full_url}|" -e "s|_siteurl_|${prj_full_url}|" local-config.php
+	sed -e "s|_database_|${prj_id}|" -e "s|_user_|${LOCAL_DB_USER}|" -e "s|_password_|${LOCAL_DB_PASS}|" -e "s|_dbhost_|${LOCAL_DB_HOST}|" -e "s|_home_|${prj_full_url}|" -e "s|_siteurl_|${prj_full_url}|" ${template_dir}/wordpress/samples/config-sample.php > local-config.php
 
 	wp db create
 	wp core install --url="${prj_full_url}" --title="${prj_name}" --admin_user="${WP_USER}" --admin_password="${WP_PASS}" --admin_email="${WP_EMAIL}"
@@ -72,24 +70,22 @@ if [[ $prj_type =~ ^[Yy]$ ]]; then
 
 	cd ${prj_id}-theme
 
-	cp  ${template_dir}/wordpress/samples/style-sample.css style.css
-	sed -i '' -e "s|%project_name%|${prj_name}|g" style.css
+	sed -e "s|%project_name%|${prj_name}|g" ${template_dir}/wordpress/samples/style-sample.css > style.css
 
 	cp -a ${template_dir}/global/theme/. .
 
 	cp -a ${template_dir}/wordpress/theme/. .
 
-	sed -i '' -e "s|%project_initials%|${prj_initials}|g" functions.php
-
-	if [ ! -d "includes" ]; then
-	    mkdir includes
-	fi
-
-	cp ${template_dir}/wordpress/samples/library-sample.php includes/${prj_initials}-library.php
-
 	if [ ! -d "layouts" ]; then
 	    mkdir layouts
 	fi
+
+	find includes -not -name 'index.php' -not -name '.' -not -name '..' -not -name 'includes' -not -name 'library' | sed -e "s/^\.\///g" | xargs -I {} mv {} ${prj_initials}-{}
+
+	includes=$(find includes -not -name 'index.php' -not -name '.' -not -name '..' -not -name 'includes' -not -name 'library' | sed -e "s/^\.\///g" | xargs -I {} echo "include('"{}"');")
+	# includes=$(find includes -not -name 'index.php' -not -name '.' -not -name '..' -not -name 'includes' -not -name 'library' -exec echo $(dirname {})/${prj_initials}-$(basename {}) \;)
+
+	sed -e "s|%includes%|${includes//$'\n'/$'\\\\\n'}|g" ${template_dir}/wordpress/samples/functions-sample.php > functions.php
 
 	# Back to base directory
 

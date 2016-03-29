@@ -160,7 +160,7 @@ if(!function_exists('the_phone')){
 
 if(!function_exists('get_currency')){
 	function get_currency($number, $trim_length=0) {
-		setlocale(LC_MONETARY, 'en_US');
+		setlocale(LC_MONETARY, 'en_US.utf8');
 		$format = '%.'.$trim_length.'n';
 		return money_format($format, floatval($number));
 	}

@@ -29,3 +29,9 @@ add to PATH in .bash_profile
 export PATH=/Applications/MAMP/bin/php/php5.6.10/bin:/Applications/MAMP/Library/bin:$PATH
 export PATH=/Applications/MAMP/Library/bin:$PATH
 ```
+
+
+### Todo
+- Font Awesome Dashicons
+- Font Awesome Front End
+- Library Includes
