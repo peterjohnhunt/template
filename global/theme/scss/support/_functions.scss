@@ -5,6 +5,7 @@
 //	 _PXtoEM
 //	 _Kerning
 //	 _Shade
+//	 _ImportFont
 //   _GetMap
 //
 //░░░░░░░░░░░░░░░░░░░░░░░░
@@ -33,6 +34,15 @@
 
 @function shade($color, $shade){
 	@return map-get(map-get($shader, $color), $shade);
+}
+
+
+//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+// _ImportFont
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+
+@function import($weight, $family){
+	@return map-get(map-get($import-keys, $weight), $family);
 }
 
 
