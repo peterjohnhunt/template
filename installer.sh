@@ -1,5 +1,4 @@
 function global_variables {
-	now=$(date +"%Y-%m-%d-%H-%M-%S")
 	read -p "Is this a wordpress site? (y/n): " -n 1 -r -e prj_type
     read -p "Enter your project's name: " -e prj_id
     prj_name=$prj_id
@@ -17,6 +16,8 @@ function wp_variables {
 	read -p "Enter your project's initials: " -e prj_initials
 }
 
+cd $(dirname $0)
+clear
 source config
 global_variables
 template_dir=${PWD}
@@ -50,7 +51,7 @@ if [[ $prj_type =~ ^[Yy]$ ]]; then
 
 	# plugins
 
-	cd ${project_dir}/wp-content/plugins/
+	cd $(wp plugin path)
 	find . -not -name 'index.php' -not -name '.' -not -name '..' | xargs rm -rf
 
 	cp -a ${template_dir}/wordpress/plugins/. .
@@ -59,7 +60,7 @@ if [[ $prj_type =~ ^[Yy]$ ]]; then
 
 	# themes
 
-	cd ${project_dir}/wp-content/themes/
+	cd $(wp theme path)
 	find . -not -name 'index.php' -not -name '.' -not -name '..' | xargs rm -rf
 
 	if [ ! -d "${prj_id}-theme" ]; then
@@ -76,16 +77,83 @@ if [[ $prj_type =~ ^[Yy]$ ]]; then
 
 	cp -a ${template_dir}/wordpress/theme/. .
 
+	# theme folders
+
 	if [ ! -d "layouts" ]; then
 	    mkdir layouts
 	fi
 
-	find includes -not -name 'index.php' -not -name '.' -not -name '..' -not -name 'includes' -not -name 'library' | sed -e "s/^\.\///g" | xargs -I {} mv {} ${prj_initials}-{}
+	if [ ! -d "templates" ]; then
+	    mkdir templates
+	fi
 
-	includes=$(find includes -not -name 'index.php' -not -name '.' -not -name '..' -not -name 'includes' -not -name 'library' | sed -e "s/^\.\///g" | xargs -I {} echo "include('"{}"');")
-	# includes=$(find includes -not -name 'index.php' -not -name '.' -not -name '..' -not -name 'includes' -not -name 'library' -exec echo $(dirname {})/${prj_initials}-$(basename {}) \;)
+	if [ ! -d "assets" ]; then
+	    mkdir assets
+	fi
 
-	sed -e "s|%includes%|${includes//$'\n'/$'\\\\\n'}|g" ${template_dir}/wordpress/samples/functions-sample.php > functions.php
+	if [ ! -d "includes" ]; then
+	    mkdir includes
+	fi
+
+	# assets
+
+	cd assets
+
+	if [ ! -d "css" ]; then
+	    mkdir css
+	fi
+
+	if [ ! -d "fonts" ]; then
+	    mkdir fonts
+	fi
+
+	if [ ! -d "images" ]; then
+	    mkdir images
+	fi
+
+	if [ ! -d "js" ]; then
+	    mkdir js
+	fi
+
+	cd fonts
+
+	git clone https://github.com/FortAwesome/Font-Awesome.git fontawesome &> /dev/null
+
+	cd fontawesome
+
+	find . -maxdepth 1 -not -name 'fonts' -not -name 'css' -not -name 'scss' -not -name '.' -not -name '..' | sed -e "s/^\.\///g" | xargs rm -rf
+
+	cd css
+
+	sed -E -e "s/\.fa-/\.dashicons-fa-/g" -e "s/\{/\{font-family:'FontAwesome' \!important;/g" < font-awesome.min.css > font-awesome.dashicons.min.css
+
+	# includes
+
+	cd $(wp theme path)
+
+	cd ${prj_id}-theme
+
+	cd includes
+
+	cp -a ${template_dir}/wordpress/includes/. .
+
+	find . -maxdepth 1 -type f | sed -e "s/^\.\///g" | xargs -I {} mv {} ${prj_initials}-{}
+	includes=$(find . -maxdepth 1 -type f | sed -e "s/^\.\///g" | xargs -I {} echo "include('includes/"{}"');")
+
+	# utilities
+
+	cd utilities
+
+	find . -maxdepth 1 -type f | sed -e "s/^\.\///g" | xargs -I {} mv {} ${prj_initials}-{}
+	utilities=$(find . -maxdepth 1 -type f | sed -e "s/^\.\///g" | xargs -I {} echo "include('includes/utilities/"{}"');")
+
+	# functions
+
+	cd $(wp theme path)
+
+	cd ${prj_id}-theme
+
+	sed -e "s|%includes%|${includes//$'\n'/$'\\\\\n'}|g" -e "s|%utilities%|${utilities//$'\n'/$'\\\\\n'}|g" ${template_dir}/wordpress/samples/functions-sample.php > functions.php
 
 	# Back to base directory
 
@@ -95,7 +163,6 @@ if [[ $prj_type =~ ^[Yy]$ ]]; then
 	    mkdir db
 	fi
 
-	wp db export "db/latestdb-${now}.sql"
 	wp db export "db/latestdb.sql"
 
 	wp theme activate ${prj_id}-theme
@@ -112,11 +179,11 @@ chmod 644 `find . -type f`
 
 chmod 755 `find . -type d`
 
-git add --all
-git commit -m "Initial Template"
+git add --all &> /dev/null
+git commit -m "Initial Template" &> /dev/null
 if [[ $prj_repo ]]; then
-	git remote add origin ${prj_repo}
-	git push -u origin master
+	git remote add origin ${prj_repo} &> /dev/null
+	git push -u origin master &> /dev/null
 fi
 
 osascript <<EOF

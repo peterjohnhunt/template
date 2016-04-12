@@ -16,6 +16,7 @@
 //	 	∟Get_Parse_Currency
 //	 _Path
 //	 	∟Get_Static
+//	 	∟Get_Asset
 //	 _iFrame
 //	 	∟Get_iFrame_Id
 //	 _Youtube
@@ -224,6 +225,27 @@ if(!function_exists('the_static')){
 }
 
 
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟Get_Asset
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
+if(!function_exists('get_asset')){
+	function get_asset($filename='',$location='') {
+		return trailingslashit(get_template_directory_uri().'/assets/'.$location).$filename;
+	}
+}
+
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+// ∟The_Asset
+//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
+
+if(!function_exists('the_asset')){
+	function the_asset($filename='',$location='') {
+		echo get_asset($filename);
+	}
+}
+
+
 
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 //  _iFrame
@@ -296,12 +318,12 @@ if(!function_exists('the_video_thumbnail')){
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
 //∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
-// ∟Get_Page_By_Template
+// ∟Get_Exclusive_Link
 //∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
 
-if(!function_exists('get_page_by_template')){
-	function get_page_by_template($template){
-		$template .= '.php';
+if(!function_exists('get_exclusive_id')){
+	function get_exclusive_id($template){
+		$template = 'templates/'.$template.'.exc.php';
 		$pages = get_posts(array(
 			'meta_key' => '_wp_page_template',
 			'meta_value' => $template,
@@ -316,35 +338,24 @@ if(!function_exists('get_page_by_template')){
 }
 
 //∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
-// ∟The_Page_By_Template
+// ∟Get_Exclusive_Link
 //∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
 
-if(!function_exists('the_page_by_template')){
-	function the_page_by_template($template){
-		echo get_page_by_template($template);
+if(!function_exists('get_exclusive_link')){
+	function get_exclusive_link($template){
+		return get_the_permalink(get_exclusive_id($template));
 	}
 }
 
 //∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
-// ∟Get_Page_Link_By_Template
+// ∟The_Exclusive_Link
 //∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
 
-if(!function_exists('get_page_link_by_template')){
-	function get_page_link_by_template($template){
-		return get_the_permalink(get_page_by_template($template));
+if(!function_exists('the_exclusive_link')){
+	function the_exclusive_link($template){
+		echo get_exclusive_link($template);
 	}
 }
-
-//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
-// ∟the_page_link_by_template
-//∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
-
-if(!function_exists('the_page_link_by_template')){
-	function the_page_link_by_template($template){
-		echo get_page_link_by_template($template);
-	}
-}
-
 
 
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡

@@ -23,7 +23,7 @@ function template_in_use($page_templates, $this, $post){
 	$default = get_post_meta($post->ID, '_wp_page_template', true);
 	foreach ($page_templates as $template => $name) {
 		if ($template != $default) {
-			if (strpos($template, '-exclusive.php') !== false) {
+			if (strpos($template, '.exc.php') !== false) {
 				$pages = get_posts(array(
 					'meta_key' => '_wp_page_template',
 					'meta_value' => $template,
@@ -46,7 +46,7 @@ add_filter('theme_page_templates', 'template_in_use', 10, 3);
 
 function template_reset($post_id){
 	$template = get_post_meta($post_id, '_wp_page_template', true);
-	if (strpos($template, '-exclusive.php') !== false) {
+	if (strpos($template, '.exc.php') !== false) {
 		$pages = get_posts(array(
 			'meta_key' => '_wp_page_template',
 			'meta_value' => $template,

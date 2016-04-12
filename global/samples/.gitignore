@@ -8,3 +8,4 @@ local-config.php
 scss-cache/
 latestdb-*.sql
 upgrade/
+*.map
