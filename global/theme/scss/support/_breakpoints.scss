@@ -9,18 +9,39 @@ $breakpoints:(
 );
 
 
-@mixin breakpoint($breakpoint){
+@mixin at($breakpoint, $relativity:max){
 	@if map-has-key($breakpoints, $breakpoint){
-		@media (max-width: map-get($breakpoints, $breakpoint)){
+		@media screen and (#{$relativity}-width: map-get($breakpoints, $breakpoint)){
 			@content;
 		}
 	}
 	@else{
-		@media (max-width:$breakpoint * 1px){
+		@media screen and (#{$relativity}-width:$breakpoint * 1px){
 			@content;
 		}
 	}
 }
+
+@mixin between($min-breakpoint,$max-breakpoint){
+	@if map-has-key($breakpoints, $min-breakpoint){
+		$min-breakpoint:map-get($breakpoints, $min-breakpoint);
+	}
+	@else{
+		$min-breakpoint:$min-breakpoint * 1px;
+	}
+
+	@if map-has-key($breakpoints, $max-breakpoint){
+		$max-breakpoint:map-get($breakpoints, $max-breakpoint);
+	}
+	@else{
+		$max-breakpoint:$max-breakpoint * 1px;
+	}
+
+	@media screen and (min-width: $min-breakpoint) and (max-width: $max-breakpoint){
+		@content;
+	}
+}
+
 
 
 // ════ⓝⓞⓣⓔ════
