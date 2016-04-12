@@ -406,18 +406,9 @@
 // ════ⓤⓢⓔ════
 // @include bgimg('icons/arrow.png')
 
-$image-path:"../images/";
-$asset-path:"../assets/";
-
-@mixin bgimg($path, $asset:null){
-	@if $asset == asset{
-		background-image:url(#{$asset-path}#{$path});
-		background-repeat:no-repeat;
-	}
-	@else{
-		background-image:url(#{$image-path}#{$path});
-		background-repeat:no-repeat;
-	}
+@mixin bgimg($path, $folder-path:'../assets/images/'){
+	background-image:url(#{$folder-path}#{$path});
+	background-repeat:no-repeat;
 }
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░

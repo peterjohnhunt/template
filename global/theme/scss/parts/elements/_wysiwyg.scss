@@ -54,7 +54,8 @@ p{
 // _List
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
-ul,ol{
+ul,
+ol{
 	padding-left:30px;
 	margin-bottom:20px;
 
@@ -75,7 +76,8 @@ blockquote{
 		line-height:em(18,16);
 		font-size:em(20);
 
-		&:before,&:after{
+		&:before,
+		&:after{
 			content:'"';
 			font-size:em(25);
 		}
@@ -95,9 +97,11 @@ blockquote{
 		&.alignleft{
 			float:left;
 		}
+
 		&.alignright{
 			float:right;
 		}
+
 		&.aligncenter{
 			display:block;
 			margin-left:auto;

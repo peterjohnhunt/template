@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -8,7 +8,7 @@
 </head>
 <body <?php body_class(); ?>>
 
-	<div class="mobile-nav">
+	<nav class="mobile-menu">
 		<?php
 			// $nav_args = array(
 			// 	'theme_location' => 'header-menu',
@@ -17,14 +17,14 @@
 			// );
 			// wp_nav_menu($nav_args);
 		?>
-	</div>
+	</nav>
 
-	<div id="header">
-		<a href="<?php bloginfo('url'); ?>" id="logo">
+	<header>
+		<a href="<?php bloginfo('url'); ?>" class="logo">
 
 		</a>
 
-		<div class="nav">
+		<nav class="primary-menu">
 			<?php
 				// $nav_args = array(
 				// 	'theme_location' => 'header-menu',
@@ -34,10 +34,10 @@
 				// wp_nav_menu($nav_args);
 			?>
 
-			<div class="toggle-menu">
+			<div class="mobile-menu-toggler">
 				<div class="tog top"></div>
 				<div class="tog mid"></div>
 				<div class="tog bot"></div>
 			</div>
-		</div>
-	</div>
+		</nav>
+	</header>
