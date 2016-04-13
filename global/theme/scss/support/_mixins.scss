@@ -274,17 +274,17 @@
 // ∟VerticalAlign
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin vertAlign($child){
+@mixin vertAlign($child, $alignment:middle){
 	&:before{
 		content: '';
 		display: inline-block;
-		vertical-align: middle;
+		vertical-align: $alignment;
 		height: 100%;
 		width: .1px;
 	}
 	> #{$child}{
 		display: inline-block;
-		vertical-align: middle;
+		vertical-align: $alignment;
 	}
 }
 
