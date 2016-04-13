@@ -61,6 +61,3 @@ function template_reset($post_id){
 	}
 }
 add_action( 'save_post_page', 'template_reset', 10, 1 );
-
-
-?>

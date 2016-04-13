@@ -77,6 +77,8 @@ if [[ $prj_type =~ ^[Yy]$ ]]; then
 
 	cp -a ${template_dir}/wordpress/theme/. .
 
+	cp -a ${template_dir}/wordpress/javascript/. javascript/
+
 	# theme folders
 
 	if [ ! -d "layouts" ]; then
@@ -119,7 +121,7 @@ if [[ $prj_type =~ ^[Yy]$ ]]; then
 
 	git clone https://github.com/FortAwesome/Font-Awesome.git fontawesome &> /dev/null
 
-	cd fontawesome
+	cd font-awesome
 
 	find . -maxdepth 1 -not -name 'fonts' -not -name 'css' -not -name 'scss' -not -name '.' -not -name '..' | sed -e "s/^\.\///g" | xargs rm -rf
 

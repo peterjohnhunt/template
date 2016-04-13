@@ -409,5 +409,3 @@ if(!function_exists('get_ordered_terms')){
 	    return $ordered_terms;
 	}
 }
-
-?>
