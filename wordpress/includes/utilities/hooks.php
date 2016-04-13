@@ -20,18 +20,20 @@
 //∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
 
 function template_in_use($page_templates, $this, $post){
-	$default = get_post_meta($post->ID, '_wp_page_template', true);
-	foreach ($page_templates as $template => $name) {
-		if ($template != $default) {
-			if (strpos($template, '.exc.php') !== false) {
-				$pages = get_posts(array(
-					'meta_key' => '_wp_page_template',
-					'meta_value' => $template,
-					'posts_per_page' => 1,
-					'post_type' => 'page',
-				));
-				if (!empty($pages)) {
-					$page_templates[$template] = $name . ' (In Use)';
+	if ($post) {
+		$default = get_post_meta($post->ID, '_wp_page_template', true);
+		foreach ($page_templates as $template => $name) {
+			if ($template != $default) {
+				if (strpos($template, '-exclusive.php') !== false) {
+					$pages = get_posts(array(
+						'meta_key' => '_wp_page_template',
+						'meta_value' => $template,
+						'posts_per_page' => 1,
+						'post_type' => 'page',
+					));
+					if (!empty($pages)) {
+						$page_templates[$template] = $name . ' (In Use)';
+					}
 				}
 			}
 		}
