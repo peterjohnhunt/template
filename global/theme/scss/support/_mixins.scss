@@ -256,18 +256,18 @@
 }
 
 @mixin absolute($directions){
-	position: absolute;
 	@include position($directions);
+	position: absolute;
 }
 
 @mixin relative($directions){
-	position: relative;
 	@include position($directions);
+	position: relative;
 }
 
 @mixin fixed($directions){
-	position: fixed;
 	@include position($directions);
+	position: fixed;
 }
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
