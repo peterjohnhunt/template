@@ -22,8 +22,8 @@
 //	 _Youtube
 //	 	∟Get_Video_Thumbnail
 //	 _Templates
-//	 	∟Get_Page_By_Template
-//	 	∟Get_Page_Link_By_Template
+//	 	∟Get_Exclusive_ID
+//	 	∟Get_Exclusive_Link
 //	 _Taxonomies
 //	 	∟Get_Term_Title
 //	 	∟Get_Ordered_Terms
@@ -318,7 +318,7 @@ if(!function_exists('the_video_thumbnail')){
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
 //∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
-// ∟Get_Exclusive_Link
+// ∟Get_Exclusive_ID
 //∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴∵∴
 
 if(!function_exists('get_exclusive_id')){
