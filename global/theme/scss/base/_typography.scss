@@ -75,17 +75,14 @@ p{
 
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p{
-	@include end-margin;
+h1,h2,h3,h4,h5,h6,p{
+	@include noMargin;
+
+	&,a{
+		@include ease;
+	}
 }
 
 a{
-	display:inline-block;
-	@include ease;
+	display: inline-block;
 }

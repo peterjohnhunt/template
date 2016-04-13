@@ -1,23 +1,23 @@
 //░░░░░░░░░░░░░░░░░░░░░░░░
 //
-//   MIXIN DIRECTORY
+//   DIRECTORY
+//
+//	 ✔_BestPractice
 //
 //	 _Text
 //	     ∟Highlight
 //	     ∟Placeholder
 //	     ∟Ellipsis
 //	     ∟Columns
-//       ∟EndMargin
+//       ∟NoMargin
 //
 //	 _Alignment
 //	     ∟Grid
 //	     ∟NavList
-//	     ∟AbsolutePosition
+//	     ∟Position
 //	     ∟VerticalAlign
-//	     ∟CenterByValue
-//	     ∟RelativeCenter
+//	     ∟CenterByHeights
 //	     ∟AbsoluteCenter
-//	     ∟DirectCenter
 //
 //	 _Size
 //	     ∟AspectRatio
@@ -27,12 +27,11 @@
 //	     ∟Color
 //	     ∟Size
 //	     ∟Image
-//	     ∟Content
+//	     ∟Behind
 //
 //	 _Transitions
 //       ∟Ease
-//       ∟Bounce
-//       ∟Elastic
+//       ∟Bezier
 //
 //	 _Manipulate
 //	     ∟Transform
@@ -61,7 +60,6 @@
 //
 //░░░░░░░░░░░░░░░░░░░░░░░░
 
-
 //▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 // _Text
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
@@ -70,7 +68,7 @@
 // ∟Highlight
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin selection($bgColor, $color){
+@mixin highlight($bgColor, $color){
 	::selection {
 		background-color: $bgColor;
 		color: $color;
@@ -81,7 +79,6 @@
 		color: $color;
 	}
 }
-
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 // ∟Placeholder
@@ -97,7 +94,7 @@
 
 	&:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
 	    color: $color;
-	    opacity:  1;
+	    opacity: 1;
 		@if( $font != undefined ){
 			@extend %#{$font};
 		}
@@ -105,7 +102,7 @@
 
 	&::-moz-placeholder { /* Mozilla Firefox 19+ */
 	    color: $color;
-	    opacity:  1;
+	    opacity: 1;
 		@if( $font != undefined ){
 			@extend %#{$font};
 		}
@@ -123,7 +120,7 @@
 // ∟Ellipsis
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin ellipsis($overflow: ellipsis){
+@mixin ellipsis($overflow:ellipsis){
     overflow: hidden;
     white-space: nowrap;
     text-overflow: $overflow;
@@ -133,7 +130,7 @@
 // ∟Columns
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin column-layout($colCount, $colGap){
+@mixin columnLayout($colCount, $colGap){
 	column-count: $colCount;
 	-moz-column-count: $colCount;
 	-webkit-column-count: $colCount;
@@ -143,15 +140,14 @@
 }
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-// ∟EndMargin
+// ∟NoMargin
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin end-margin($position:last,$direction:bottom){
+@mixin noMargin($position:last, $direction:bottom){
     &:#{$position}-child{
 		margin-#{$direction}: 0;
 	}
 }
-
 
 
 //▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
@@ -163,66 +159,65 @@
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 // ════ⓤⓢⓔ════
-// @include GridMe(4, 0, 0, (break:#, break:#));
+// @include grid(4, 0, 0, (break:#, break:#));
 
-@function calc-width($col,$gut){
+@function calcWidth($col, $gut){
 	$perc: (100% / $col);
 
 	@if( $gut == 0 ){
 		@return $perc;
 	}
 	@else{
-		$gutter: (($gut * ($col - 1)) / $col);
+		$gutter: ( ( $gut * ($col - 1) ) / $col );
 		@return calc(#{$perc} - #{$gutter});
 	}
 }
 
-@mixin GridMe($columns, $gutter-x, $gutter-y, $breakpoints:undefined){
-	width: calc-width($columns,$gutter-x);
+@mixin grid($columns, $gutter-x, $gutter-y, $breakpoints:undefined){
+	width: calcWidth($columns,$gutter-x);
 	margin-right: $gutter-x;
 	margin-top: $gutter-y;
-	float:left;
+	float: left;
 	-webkit-transition: all 0.35s ease-in-out;
 	-moz-transition: all 0.35s ease-in-out;
 	-o-transition: all 0.35s ease-in-out;
 	transition: all 0.35s ease-in-out;
 
 	&:nth-child(#{$columns}n){
-		margin-right:0;
+		margin-right: 0;
 	}
 
 	&:nth-child(#{$columns}n+1){
-		clear:both;
+		clear: both;
 	}
 
 	&:nth-child(-n+#{$columns}){
-		margin-top:0;
+		margin-top: 0;
 	}
-
 
 	@if( $breakpoints != undefined ){
 		$breaks: $breakpoints;
 
 		@each $breakpoint, $columns in $breaks{
 			@media (max-width:#{$breakpoint}px){
-				width: calc-width($columns,$gutter-x);
+				width: calc-width($columns, $gutter-x);
 
 				&:nth-child(n){
-					margin-right:$gutter-x;
-					margin-top:$gutter-y;
-					clear:none;
+					margin-right: $gutter-x;
+					margin-top: $gutter-y;
+					clear: none;
 				}
 
 				&:nth-child(#{$columns}n){
-					margin-right:0;
+					margin-right: 0;
 				}
 
 		        &:nth-child(#{$columns}n+1){
-					clear:both;
+					clear: both;
 		        }
 
 				&:nth-child(-n+#{$columns}){
-					margin-top:0;
+					margin-top: 0;
 				}
 			}
 		}
@@ -233,112 +228,119 @@
 // ∟NavList
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin navList($margin:null){
-	list-style:none;
+@mixin navList($margin:null, $orientation:horizontal){
+	list-style: none;
 
 	li{
-		display:inline-block;
-
+		@if $orientation != vertical{
+			display: inline-block;
+		}
 		@if $margin != null{
+			$direction:if( $orientation == vertical, bottom, right );
+
 			&:not(:last-child){
-				margin-right:$margin * 1px;
+				margin-#{$direction}: $margin;
 			}
 		}
 	}
 }
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-// ∟AbsolutePosition
+// ∟Position
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin absolute($directions){
-	position:absolute;
+@mixin position($directions){
 	@each $direction, $value in $directions{
-		#{$direction}:$value;
+		#{$direction}: $value;
 	}
+}
+
+@mixin absolute($directions){
+	position: absolute;
+	@include position($directions);
+}
+
+@mixin relative($directions){
+	position: relative;
+	@include position($directions);
+}
+
+@mixin fixed($directions){
+	position: fixed;
+	@include position($directions);
 }
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 // ∟VerticalAlign
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin vAlign($child){
-	&:before {
+@mixin vertAlign($child){
+	&:before{
 		content: '';
 		display: inline-block;
 		vertical-align: middle;
-		height: 100%; width: .1px;
+		height: 100%;
+		width: .1px;
 	}
 	> #{$child}{
-		display:inline-block;
-		vertical-align:middle;
+		display: inline-block;
+		vertical-align: middle;
 	}
 }
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-// ∟CenterByValue
+// ∟CenterByHeights
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin centerBy($type, $value){
-	position:absolute;
-
-	@if $type == height{
-		height: $value * 1px;
-		top: 50%;
-		margin-top: -1px * ($value/2);
-	}
-	@elseif $type == width{
-		width: $value * 1px;
-		left: 50%;
-		margin-left: -1px * ($value/2);
-	}
-}
-
-//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-// ∟RelativeCenter
-//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-
-@mixin centerRel($parentHeight, $objectHeight){
-	top: ($parentHeight - $objectHeight)/2;
-	position: relative;
+@mixin centerByHeights($parentHeight, $objectHeight, $position:relative){
+	position: $position;
+	top: ( $parentHeight - $objectHeight )/2;
 }
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 // ∟AbsoluteCenter
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin center($top:50%,$sides:undefined){
-	transform:translateY(-50%);
-	-webkit-transform:translateY(-50%);
-	-moz-transform:translateY(-50%);
-	-o-transform:translateY(-50%);
-	-ms-transform:translateY(-50%);
-	position:absolute;
-	top:$top;
+@mixin center($from:top, $amount:50%, $sides:undefined){
+	@if $from == top{
+		$translation:translateY(-50%);
+	}
+	@else if $from == bottom{
+		$translation:translateY(50%);
+	}
+	@else if $from == left{
+		$translation:translateX(-50%);
+	}
+	@else if $from == right{
+		$translation:translateX(50%);
+	}
+	@else if $from == both{
+		$translation:translate(-50%,-50%);
+	}
+
+	transform: $translation;
+	-webkit-transform: $translation;
+	-moz-transform: $translation;
+	-o-transform: $translation;
+	-ms-transform: $translation;
+	position: absolute;
+
+	@if $from == both{
+		top: 50%;
+		left: 50%;
+	}
+	@else{
+		#{$from}: $amount;
+	}
 
 	@if( $sides != undefined ){
-		$thesides: $sides;
+		$thesides:$sides;
 
 		@each $side, $value in $thesides{
-			#{$side}:$value;
+			#{$side}: $value;
 		}
 	}
 }
-
-//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-// ∟DirectCenter
-//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-
-@mixin direct-center($height, $width){
-	position: absolute;
-	height: $height * 1px;
-	top: 50%;
-	margin-top: -1px * ($height/2);
-	width: $width * 1px;
-	left: 50%;
-	margin-left: -1px * ($width/2);
-}
-
 
 
 //▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
@@ -349,30 +351,25 @@
 // ∟AspectRatio
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin aspect-ratio($rel-height,$rel-width,$el-width:100){
-	width:$el-width * 1%;
-	height:0;
-	padding-top:($rel-height / $rel-width) * ($el-width * 1%);
+@mixin aspectRatio($assetHeight, $assetWidth, $elementWidth:100){
+	width: $elementWidth * 1%;
+	height: 0;
+	padding-top: ( $assetHeight / $assetWidth ) * ( $elementWidth * 1% );
 }
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 // ∟Overlay
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin overlay($height:100%, $width:100%, $position:(top:0,left:0)){
-	position:absolute;
-	height:$height;
-	width:$width;
+@mixin overlay($height:100%, $width:100%, $position:(top:0, left:0)){
+	height: $height;
+	width: $width;
+	position: absolute;
 
 	@if( $position != undefined ){
-		$theposition: $position;
-
-		@each $side, $value in $theposition{
-			#{$side}:$value;
-		}
+		@include position($position);
 	}
 }
-
 
 
 //▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
@@ -384,18 +381,18 @@
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @mixin bg($color){
-	background-color:$color;
+	background-color: $color;
 }
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 // ∟Size
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin bgsize($size:cover,$xPo: 50%, $yPo: 50%){
+@mixin bgSize($size:cover, $xAxis:50%, $yAxis:50%){
   -webkit-background-size: $size;
   -moz-background-size: $size;
   background-size: $size;
-  background-position: $xPo $yPo;
+  background-position: $xAxis $yAxis;
   background-repeat: no-repeat;
 }
 
@@ -406,24 +403,23 @@
 // ════ⓤⓢⓔ════
 // @include bgimg('icons/arrow.png')
 
-@mixin bgimg($path, $folder-path:'../assets/images/'){
-	background-image:url(#{$folder-path}#{$path});
-	background-repeat:no-repeat;
+@mixin bgImg($path, $folder-path:'../assets/images/'){
+	background-image: url(#{$folder-path}#{$path});
+	background-repeat: no-repeat;
 }
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-// ∟Content
+// ∟Behind
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin bgcontent($content_class, $z:0){
-	z-index:$z;
+@mixin bgBehind($element, $zIndex:0){
+	z-index: $zIndex;
 
-	#{$content_class}{
-		display:block;
-		z-index:-1;
+	#{$element}{
+		display: block;
+		z-index: -1;
 	}
 }
-
 
 
 //▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
@@ -434,7 +430,7 @@
 // ∟Ease
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin ease($property: all, $duration: 0.35s){
+@mixin ease($property:all, $duration:0.35s){
   -webkit-transition: $property $duration ease-in-out;
   -moz-transition: $property $duration ease-in-out;
   -o-transition: $property $duration ease-in-out;
@@ -442,53 +438,19 @@
 }
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-// ∟Bounce
+// ∟Bezier
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin bounce($property:all, $duration: 0.35s, $strength:light){
-	@if( $strength == light ){
-		-webkit-transition: $property $duration cubic-bezier(0.155, 0.485, 0.325, 1);
-		-webkit-transition: $property $duration cubic-bezier(0.155, 0.485, 0.325, 1.265);
-		-moz-transition: $property $duration cubic-bezier(0.155, 0.485, 0.325, 1.265);
-		-o-transition: $property $duration cubic-bezier(0.155, 0.485, 0.325, 1.265);
-		transition: $property $duration cubic-bezier(0.155, 0.485, 0.325, 1.265);
-		-webkit-transition-timing-function: cubic-bezier(0.155, 0.485, 0.325, 1);
-		-webkit-transition-timing-function: cubic-bezier(0.155, 0.485, 0.325, 1.265);
-		-moz-transition-timing-function: cubic-bezier(0.155, 0.485, 0.325, 1.265);
-		-o-transition-timing-function: cubic-bezier(0.155, 0.485, 0.325, 1.265);
-		transition-timing-function: cubic-bezier(0.155, 0.485, 0.325, 1.265);
-	}
-	@else if( $strength == strong ){
-		-webkit-transition: $property $duration cubic-bezier(0.060, 0.980, 0.630, 1);
-		-webkit-transition: $property $duration cubic-bezier(0.060, 0.980, 0.630, 1.650);
-		-moz-transition: $property $duration cubic-bezier(0.060, 0.980, 0.630, 1.650);
-		-o-transition: $property $duration cubic-bezier(0.060, 0.980, 0.630, 1.650);
-		transition: $property $duration cubic-bezier(0.060, 0.980, 0.630, 1.650);
-		-webkit-transition-timing-function: cubic-bezier(0.060, 0.980, 0.630, 1);
-		-webkit-transition-timing-function: cubic-bezier(0.060, 0.980, 0.630, 1.650);
-		-moz-transition-timing-function: cubic-bezier(0.060, 0.980, 0.630, 1.650);
-		-o-transition-timing-function: cubic-bezier(0.060, 0.980, 0.630, 1.650);
-		transition-timing-function: cubic-bezier(0.060, 0.980, 0.630, 1.650);
-	}
+@mixin bezier($property:all, $duration:0.35s, $behaviorValues:'0.155, 0.485, 0.325, 1.265'){
+	-webkit-transition: $property $duration cubic-bezier($behaviorValues);
+	-moz-transition: $property $duration cubic-bezier($behaviorValues);
+	-o-transition: $property $duration cubic-bezier($behaviorValues);
+	transition: $property $duration cubic-bezier($behaviorValues);
+	-webkit-transition-timing-function: cubic-bezier($behaviorValues);
+	-moz-transition-timing-function: cubic-bezier($behaviorValues);
+	-o-transition-timing-function: cubic-bezier($behaviorValues);
+	transition-timing-function: cubic-bezier($behaviorValues);
 }
-
-//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-// ∟Elastic
-//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-
-@mixin elastic($property:all, $duration: 0.35s){
-	-webkit-transition: $property $duration cubic-bezier(0.630, 0, 0.550, 1);
-    -webkit-transition: $property $duration cubic-bezier(0.630, -0.600, 0.550, 1.405);
-    -moz-transition: $property $duration cubic-bezier(0.630, -0.600, 0.550, 1.405);
-    -o-transition: $property $duration cubic-bezier(0.630, -0.600, 0.550, 1.405);
-    transition: $property $duration cubic-bezier(0.630, -0.600, 0.550, 1.405);
-    -webkit-transition-timing-function: cubic-bezier(0.630, 0, 0.550, 1);
-    -webkit-transition-timing-function: cubic-bezier(0.630, -0.600, 0.550, 1.405);
-    -moz-transition-timing-function: cubic-bezier(0.630, -0.600, 0.550, 1.405);
-    -o-transition-timing-function: cubic-bezier(0.630, -0.600, 0.550, 1.405);
-    transition-timing-function: cubic-bezier(0.630, -0.600, 0.550, 1.405);
-}
-
 
 
 //▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
@@ -500,19 +462,19 @@
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @mixin transform($value){
-	transform:$value;
-	-webkit-transform:$value;
-	-moz-transform:$value;
-	-o-transform:$value;
-	-ms-transform:$value;
+	transform: $value;
+	-webkit-transform: $value;
+	-moz-transform: $value;
+	-o-transform: $value;
+	-ms-transform: $value;
 }
 
-@mixin origin($x:50%, $y:50%){
-	transform-origin:$x $y;
-	-webkit-transform-origin:$x $y;
-	-moz-transform-origin:$x $y;
-	-o-transform-origin:$x $y;
-	-ms-transform-origin:$x $y;
+@mixin origin($xAxis:50%, $yAxis:50%){
+	transform-origin: $xAxis $yAxis;
+	-webkit-transform-origin: $xAxis $yAxis;
+	-moz-transform-origin: $xAxis $yAxis;
+	-o-transform-origin: $xAxis $yAxis;
+	-ms-transform-origin: $xAxis $yAxis;
 }
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -541,14 +503,13 @@
 // ∟Animation
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin animation($str) {
-	-webkit-animation: #{$str};
-	-moz-animation: #{$str};
-	-ms-animation: #{$str};
-	-o-animation: #{$str};
-	animation: #{$str};
+@mixin animation($animationString) {
+	-webkit-animation: #{$animationString};
+	-moz-animation: #{$animationString};
+	-ms-animation: #{$animationString};
+	-o-animation: #{$animationString};
+	animation: #{$animationString};
 }
-
 
 
 //▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
@@ -560,7 +521,7 @@
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @mixin child($children){
-	@each $child,$type in $children{
+	@each $child, $type in $children{
 		$typeof:type-of($child);
 		$split:('even', 'odd');
 
@@ -578,7 +539,6 @@
 }
 
 
-
 //▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 // _Features
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
@@ -588,29 +548,28 @@
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @mixin toggle($height,$width,$thickness,$color,$speed:0.35s){
-	height:$height;
-	width:$width;
-	position:relative;
-	cursor:pointer;
+	height: $height;
+	width: $width;
+	position: relative;
+	cursor: pointer;
 
-	> *{
-		background-color:$color;
-		position:absolute;
-		height:$thickness;
-		width:100%;
+	> .tog{
+		height: $thickness;
+		width: 100%;
+		background-color: $color;
+		position: absolute;
 
-		&:first-child{
-			top:0;
+		&.top{
+			top: 0;
 		}
-		&:nth-child(2){
-			@include center;
+		&.mid{
+			@include centerByHeights($height, $thickness, absolute);
 		}
-		&:last-child{
-			bottom:0;
+		&.bot{
+			bottom: 0;
 		}
 	}
 }
-
 
 
 //▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
@@ -676,7 +635,6 @@
 }
 
 
-
 //▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 // _Shapes
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
@@ -686,8 +644,8 @@
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @mixin square($size){
-	height:$size;
-	width:$size;
+	height: $size;
+	width: $size;
 }
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -695,99 +653,98 @@
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @mixin circle($size){
-	height:#{$size};
-	width:#{$size};
-	border-radius:50%;
+	height: $size;
+	width: $size;
+	border-radius: 50%;
 }
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 // ∟Triangle
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-@mixin triangle ($size, $color, $direction) {
+@mixin triangle($size, $color, $direction) {
   height: 0;
   width: 0;
 
   $width: nth($size, 1);
   $height: nth($size, length($size));
 
-  $foreground-color: nth($color, 1);
-  $background-color: if(length($color) == 2, nth($color, 2), transparent);
+  $foregroundColor: nth($color, 1);
+  $backgroundColor: if( length($color) == 2, nth($color, 2), transparent );
 
-  @if ($direction == up) or ($direction == down) or ($direction == right) or ($direction == left) {
+  @if ( $direction == up ) or ( $direction == down ) or ( $direction == right ) or ( $direction == left ) {
 
     $width: $width / 2;
     $height: if(length($size) > 1, $height, $height/2);
 
     @if $direction == up {
-      border-bottom: $height solid $foreground-color;
-      border-left: $width solid $background-color;
-      border-right: $width solid $background-color;
+      border-bottom: $height solid $foregroundColor;
+      border-left: $width solid $backgroundColor;
+      border-right: $width solid $backgroundColor;
 
     } @else if $direction == right {
-      border-bottom: $width solid $background-color;
-      border-left: $height solid $foreground-color;
-      border-top: $width solid $background-color;
+      border-bottom: $width solid $backgroundColor;
+      border-left: $height solid $foregroundColor;
+      border-top: $width solid $backgroundColor;
 
     } @else if $direction == down {
-      border-left: $width solid $background-color;
-      border-right: $width solid $background-color;
-      border-top: $height solid $foreground-color;
+      border-left: $width solid $backgroundColor;
+      border-right: $width solid $backgroundColor;
+      border-top: $height solid $foregroundColor;
 
     } @else if $direction == left {
-      border-bottom: $width solid $background-color;
-      border-right: $height solid $foreground-color;
-      border-top: $width solid $background-color;
+      border-bottom: $width solid $backgroundColor;
+      border-right: $height solid $foregroundColor;
+      border-top: $width solid $backgroundColor;
     }
   }
 
-  @else if ($direction == up-right) or ($direction == up-left) {
-    border-top: $height solid $foreground-color;
+  @else if ( $direction == up-right ) or ( $direction == up-left ) {
+    border-top: $height solid $foregroundColor;
 
     @if $direction == up-right {
-      border-left:  $width solid $background-color;
+      border-left:  $width solid $backgroundColor;
 
     } @else if $direction == up-left {
-      border-right: $width solid $background-color;
+      border-right: $width solid $backgroundColor;
     }
   }
 
-  @else if ($direction == down-right) or ($direction == down-left) {
-    border-bottom: $height solid $foreground-color;
+  @else if ( $direction == down-right ) or ( $direction == down-left ) {
+    border-bottom: $height solid $foregroundColor;
 
     @if $direction == down-right {
-      border-left:  $width solid $background-color;
+      border-left:  $width solid $backgroundColor;
 
     } @else if $direction == down-left {
-      border-right: $width solid $background-color;
+      border-right: $width solid $backgroundColor;
     }
   }
 
-  @else if ($direction == inset-up) {
-    border-color: $background-color $background-color $foreground-color;
+  @else if ( $direction == inset-up ) {
+    border-color: $backgroundColor $backgroundColor $foregroundColor;
     border-style: solid;
     border-width: $height $width;
   }
 
-  @else if ($direction == inset-down) {
-    border-color: $foreground-color $background-color $background-color;
+  @else if ( $direction == inset-down ) {
+    border-color: $foregroundColor $backgroundColor $backgroundColor;
     border-style: solid;
     border-width: $height $width;
   }
 
-  @else if ($direction == inset-right) {
-    border-color: $background-color $background-color $background-color $foreground-color;
+  @else if ( $direction == inset-right ) {
+    border-color: $backgroundColor $backgroundColor $backgroundColor $foregroundColor;
     border-style: solid;
     border-width: $width $height;
   }
 
-  @else if ($direction == inset-left) {
-    border-color: $background-color $foreground-color $background-color $background-color;
+  @else if ( $direction == inset-left ) {
+    border-color: $backgroundColor $foregroundColor $backgroundColor $backgroundColor;
     border-style: solid;
     border-width: $width $height;
   }
 }
-
 
 
 //▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
@@ -804,3 +761,45 @@
 		#{$prefix}#{$property}: $value;
 	}
 }
+
+
+//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+//
+//	✔_BestPractice
+//
+//
+//	1. Case Style:
+//
+//  All mixin names and variables should be written
+//	in the camel-case.
+//
+//	@example: @mixin uniqueName(newVariable)
+//
+//
+//	2. Naming Convention:
+//
+//  Avoid undescriptive or abstract mixin or variable
+//	names. Long variables are preferred over most
+//	ambiguous, short variables.
+//
+//	@example: @mixin rows   >  @mixin rowMachine
+//  @example: $orientation  >  $or
+//
+//	3. Spacing
+//
+//	Avoid spacing before default variable values, as
+//	well as spaces between variable names and main
+//	mixin parentheses.
+//
+//	@example: @mixin name($variable:value)
+//
+//	Add spacing around conditional statements within
+//	the parentheses.
+//
+//	@example: @if( $variable == 0 )
+//
+//	Add spacing between variable lists.
+//
+//	@example: @mixin name($first:1, $second:2)
+//
+//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄

@@ -38,14 +38,13 @@ p{
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 	a{
-		font-family:inherit;
-		font-weight:inherit;
-		font-size:inherit;
+		font-family: inherit;
+		font-weight: inherit;
+		font-size: inherit;
 		text-decoration: none;
-		// color:$link;
 
 		&:hover{
-			// color:darken($link,5%);
+
 		}
 	}
 
@@ -56,11 +55,11 @@ p{
 
 ul,
 ol{
-	padding-left:30px;
-	margin-bottom:20px;
+	padding-left: 30px;
+	margin-bottom: 20px;
 
 	li{
-		margin-bottom:5px;
+		margin-bottom: 5px;
 	}
 }
 
@@ -70,20 +69,20 @@ ol{
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 blockquote{
-	text-align:center;
+	text-align: center;
 
 	p{
-		line-height:em(18,16);
-		font-size:em(20);
+		line-height: em(18,16);
+		font-size: em(20);
 
 		&:before,
 		&:after{
-			content:'"';
-			font-size:em(25);
+			content: '"';
+			font-size: em(25);
 		}
 
 		&:before{
-			margin-right:5px;
+			margin-right: 5px;
 		}
 	}
 }
@@ -95,17 +94,17 @@ blockquote{
 
 	img{
 		&.alignleft{
-			float:left;
+			float: left;
 		}
 
 		&.alignright{
-			float:right;
+			float: right;
 		}
 
 		&.aligncenter{
-			display:block;
-			margin-left:auto;
-			margin-right:auto;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
 		}
 	}
 

@@ -1,13 +1,12 @@
 $breakpoints:(
-	container      : 1200px,
-	desktop        : 960px,
-	laptop         : 850px,
-	tablet         : 768px,
-	phablet        : 600px,
-	phone          : 500px,
-	iphone         : 320px
+	container  : 1200px,
+	desktop    : 960px,
+	laptop     : 850px,
+	tablet     : 768px,
+	phablet    : 600px,
+	phone      : 500px,
+	iphone     : 320px
 );
-
 
 @mixin at($breakpoint, $relativity:max){
 	@if map-has-key($breakpoints, $breakpoint){
@@ -41,7 +40,6 @@ $breakpoints:(
 		@content;
 	}
 }
-
 
 
 // ════ⓝⓞⓣⓔ════

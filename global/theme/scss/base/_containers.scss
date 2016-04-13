@@ -2,38 +2,20 @@
 //
 //	 DIRECTORY
 //
-//	 _MainContainer
-//	 _MaxContainer
+//	 _Default
 //
 //░░░░░░░░░░░░░░░░░░░░░░░░
 
-
-
 //▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-// _MainContainer
+// _Default
 //▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
 
 .container{
-	max-width:1200px;
-	height:100%; width:90%;
-	padding:0 5%;
-	margin:0 auto;
-	position:relative;
+	max-width: 1200px;
+	height: 100%;
+	width: 90%;
+	padding: 0 5%;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
 }
-
-
-
-//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-// _MaxContainer
-//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-
-// ════ⓝⓞⓣⓔ════
-// Set this if you need to restrict the website width
-
-// .container--max{
-// 	position:relative;
-// 	max-width:1400px;
-// 	margin:0 auto;
-// 	box-shadow:0 0 10px 0 rgba(#000, 0.3);
-// 	overflow:hidden;
-// }
