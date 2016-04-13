@@ -302,6 +302,8 @@
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 @mixin center($from:top, $amount:50%, $sides:undefined){
+	$translation:null;
+
 	@if $from == top{
 		$translation:translateY(-50%);
 	}
