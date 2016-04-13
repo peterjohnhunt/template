@@ -10,7 +10,6 @@
 //     _Javascript
 //     _Fonts
 //     _Menus
-//     _FADashicons
 //
 //░░░░░░░░░░░░░░░░░░░░░░░░
 
@@ -35,7 +34,7 @@ add_theme_support( 'html5' );
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
 function theme_styles() {
-	wp_enqueue_style( 'main_css', get_template_directory_uri() . '/assets/css/main.min.css' );
+	wp_enqueue_style( 'main_css', get_asset('main.min.css','css') );
 	wp_enqueue_style( 'theme_css', get_template_directory_uri() . '/style.css' );
 }
 add_action( 'wp_enqueue_scripts', 'theme_styles' );
@@ -51,7 +50,7 @@ function theme_js() {
 	$wp_scripts->add_data( 'html5_shiv', 'conditional', 'lt IE 9' );
 
 	/* functions.js */
-	wp_enqueue_script( 'wp-functions', get_template_directory_uri() . '/assets/js/functions.min.js', array('jquery'), '', true );
+	wp_enqueue_script( 'wp-functions', get_asset('functions.min.js','js'), array('jquery'), '', true );
 }
 add_action( 'wp_enqueue_scripts', 'theme_js' );
 
@@ -61,19 +60,9 @@ add_action( 'wp_enqueue_scripts', 'theme_js' );
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
 function theme_fonts() {
-   wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets/fonts/font-awesome/css/font-awesome.min.css');
+   wp_enqueue_style('fontawesome', get_asset('font-awesome.min.css','fonts/font-awesome/css'));
 }
 add_action('wp_print_styles', 'theme_fonts');
-
-
-//≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-//  _FADashicons
-//≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-
-function fontawesome_dashicons() {
-   wp_enqueue_style('fontawesome-dashicons', get_template_directory_uri() . '/fonts/font-awesome/css/font-awesome.dashicons.min.css');
-}
-add_action('admin_init', 'fontawesome_dashicons');
 
 
 //≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡

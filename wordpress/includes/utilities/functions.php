@@ -241,7 +241,7 @@ if(!function_exists('get_asset')){
 
 if(!function_exists('the_asset')){
 	function the_asset($filename='',$location='') {
-		echo get_asset($filename);
+		echo get_asset($filename,$location);
 	}
 }
 
