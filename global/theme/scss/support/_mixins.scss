@@ -38,9 +38,6 @@
 //	     ∟Keyframes
 //	     ∟Animation
 //
-//   _Selectors
-//       ∟Children
-//
 //	 _Features
 //       ∟NavToggle
 //
@@ -529,34 +526,6 @@
     animation-name: $animation;
     animation-fill-mode: forwards;
 	animation-iteration-count:$count;
-}
-
-
-
-//▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-// _Selectors
-//▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-
-//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-// ∟Children
-//░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-
-@mixin child($children){
-	@each $child, $type in $children{
-		$typeof:type-of($child);
-		$split:('even', 'odd');
-
-		@if $typeof == string and not index($split, $child ) {
-			&:#{$child}-child{
-				@content;
-			}
-		}
-		@else{
-			&:nth-child(#{$child}#{$type}){
-				@content;
-			}
-		}
-	}
 }
 
 
