@@ -402,7 +402,7 @@
 // ════ⓤⓢⓔ════
 // @include bgimg('icons/arrow.png')
 
-@mixin bgImg($path, $folder-path:'../assets/images/'){
+@mixin bgImg($path, $folder-path:'../images/'){
 	background-image: url(#{$folder-path}#{$path});
 	background-repeat: no-repeat;
 }
