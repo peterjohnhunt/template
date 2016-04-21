@@ -131,9 +131,9 @@
 	column-count: $colCount;
 	-moz-column-count: $colCount;
 	-webkit-column-count: $colCount;
-	column-gap: ($colGap)em;
-	-moz-column-gap: ($colGap)em;
-	-webkit-column-gap: ($colGap)em;
+	column-gap: em($colGap);
+	-moz-column-gap: em($colGap);
+	-webkit-column-gap: em($colGap);
 }
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
