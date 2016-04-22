@@ -119,7 +119,7 @@ if [[ $prj_type =~ ^[Yy]$ ]]; then
 
 	cd fonts
 
-	git clone https://github.com/FortAwesome/Font-Awesome.git fontawesome &> /dev/null
+	git clone https://github.com/FortAwesome/Font-Awesome.git font-awesome &> /dev/null
 
 	cd font-awesome
 
