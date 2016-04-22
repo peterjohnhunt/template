@@ -131,9 +131,9 @@
 	column-count: $colCount;
 	-moz-column-count: $colCount;
 	-webkit-column-count: $colCount;
-	column-gap: ($colGap)em;
-	-moz-column-gap: ($colGap)em;
-	-webkit-column-gap: ($colGap)em;
+	column-gap: em($colGap);
+	-moz-column-gap: em($colGap);
+	-webkit-column-gap: em($colGap);
 }
 
 //░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
@@ -402,7 +402,7 @@
 // ════ⓤⓢⓔ════
 // @include bgimg('icons/arrow.png')
 
-@mixin bgImg($path, $folder-path:'../assets/images/'){
+@mixin bgImg($path, $folder-path:'../images/'){
 	background-image: url(#{$folder-path}#{$path});
 	background-repeat: no-repeat;
 }
