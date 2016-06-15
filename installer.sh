@@ -51,8 +51,7 @@ if [[ $prj_type =~ ^[Yy]$ ]]; then
 
 	# plugins
 
-	cd $(wp plugin path)
-	find . -not -name 'index.php' -not -name '.' -not -name '..' | xargs rm -rf
+	cd $(wp plugin path) && find . -not -name 'index.php' -not -name '.' -not -name '..' | xargs rm -rf
 
 	cp -a ${template_dir}/wordpress/plugins/. .
 
@@ -60,8 +59,7 @@ if [[ $prj_type =~ ^[Yy]$ ]]; then
 
 	# themes
 
-	cd $(wp theme path)
-	find . -not -name 'index.php' -not -name '.' -not -name '..' | xargs rm -rf
+	cd $(wp theme path) && find . -not -name 'index.php' -not -name '.' -not -name '..' | xargs rm -rf
 
 	if [ ! -d "${prj_id}-theme" ]; then
 	    mkdir ${prj_id}-theme
@@ -121,9 +119,7 @@ if [[ $prj_type =~ ^[Yy]$ ]]; then
 
 	git clone https://github.com/FortAwesome/Font-Awesome.git font-awesome &> /dev/null
 
-	cd font-awesome
-
-	find . -maxdepth 1 -not -name 'fonts' -not -name 'css' -not -name 'scss' -not -name '.' -not -name '..' | sed -e "s/^\.\///g" | xargs rm -rf
+	cd font-awesome && find . -maxdepth 1 -not -name 'fonts' -not -name 'css' -not -name 'scss' -not -name '.' -not -name '..' | sed -e "s/^\.\///g" | xargs rm -rf
 
 	cd css
 
